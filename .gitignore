@@ -1,0 +1,62 @@
+# Compiled source #
+######################## 
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+# Python extensions
+#########################
+.python-version
+.coverage
+coverage.xml
+covetage_html/
+
+# Docker
+#########################
+.data/
+
+# Eclipse generated files #
+######################### 
+.project
+.pydevproject
+.metadata
+.settings
+
+# PyCharm project folder
+######################### 
+.idea
+.vagrant
+
+# OS generated files #
+######################### 
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*~
+~*
+
+# Django
+#########################
+# media
+*.log
+.env
+.env.*
+!.env.local
+KidsAcademy/static/*
+!KidsAcademy/static/.gitkeeper
+KidsAcademy/media/*
+!KidsAcademy/media/.gitkeeper
+
+# Front-end
+#########################
+node_modules/
+
+KidsAcademy/kidsacademy/class-ui/css/settings/dev-settings\.scss
+KidsAcademy/kidsacademy/static/build/
+KidsAcademy/kidsacademy/static/build/bundle\.js
+KidsAcademy/kidsacademy/static/build/bundle\.css
