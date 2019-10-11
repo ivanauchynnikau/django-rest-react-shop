@@ -6,7 +6,6 @@ User = get_user_model()
 
 class Product(models.Model):
     category = models.ForeignKey(Category, default=0, on_delete=models.CASCADE)
-
     title = models.CharField(verbose_name='Title', max_length=64)
     description = models.CharField(verbose_name='Description', max_length=256)
     price = models.DecimalField(verbose_name='Price', default=0,

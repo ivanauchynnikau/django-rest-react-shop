@@ -4,16 +4,11 @@ User = get_user_model()
 
 
 class Category(models.Model):
-    title = models.CharField(verbose_name='Title', max_length=64)
+    title = models.CharField(verbose_name='Title', max_length=64, unique=True)
     description = models.CharField(verbose_name='Description', max_length=256)
-    CATEGORIES = [
-        (0, 'Phone'),
-        (1, 'Tablet'),
-    ]
-    categories = models.IntegerField(verbose_name='Categories', choices=CATEGORIES)
     user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
     
-    def __str__(self)
+    def __str__(self):
         return self.title
 
 
