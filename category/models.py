@@ -12,5 +12,8 @@ class Category(models.Model):
     ]
     categories = models.IntegerField(verbose_name='Categories', choices=CATEGORIES)
     user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
+    
+    def __str__(self)
+        return self.title
 
 
