@@ -1,0 +1,36 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --watch --mode development ./src/app/app.js --output ./static/main.js",
+    "build": "webpack --mode production ./src/index.js --output ./static/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "7.6.4",
+    "@babel/preset-env": "7.6.3",
+    "@babel/preset-react": "7.6.3",
+    "babel-loader": "8.0.6",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "prop-types": "15.7.2",
+    "react": "16.10.2",
+    "react-dom": "^.10.2",
+    "webpack": "4.41.1",
+    "webpack-cli": "3.3.9"
+  },
+  "dependencies": {
+    "babel-polyfill": "6.26.0",
+    "connected-react-router": "^6.5.2",
+    "history": "4.10.1",
+    "react-redux": "7.1.1",
+    "react-router": "5.1.2",
+    "react-router-redux": "5.0.0-alpha.9",
+    "redux": "4.0.4",
+    "redux-devtools-extension": "2.13.8",
+    "whatwg-fetch": "3.0.0"
+  }
+}
