@@ -1,0 +1,7 @@
+Django==2.2.6
+django-templated-mail==1.1.1
+djangorestframework==3.10.3
+djoser==0.4.1
+Pillow==6.2.0
+pytz==2019.3
+sqlparse==0.3.0

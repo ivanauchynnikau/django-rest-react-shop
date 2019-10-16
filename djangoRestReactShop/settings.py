@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'product',
     'category',
     'djoser',
-    'frontend'
+    'frontend',
+    'order',
+    'orderItem',
 ]
 
 

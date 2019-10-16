@@ -1,9 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 from category.views import *
 
 
 app_name='category'
 
 urlpatterns = [
-    path('category/create/', CategoryCreateView.as_view())
+    path('create/', CategoryCreateView.as_view())
 ]
