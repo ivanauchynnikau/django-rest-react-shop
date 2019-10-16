@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from order.models import Order
+from orderItem.serializers import OrderItemDetailSerializer
 
 
 class OrderDetailSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    items = OrderItemDetailSerializer(many=True)
 
     class Meta:
         model = Order
@@ -11,6 +13,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
             'user',
             'state',
             'comment',
+            'items'
         )
 
 
@@ -21,4 +24,5 @@ class OrderListSerializer(serializers.ModelSerializer):
             'user',
             'state',
             'comment',
+            'items'
         )
