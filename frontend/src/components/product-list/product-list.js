@@ -27,20 +27,17 @@ class Main extends Component {
   }
 
   addToCart(productId) {
-    axios.get('api/v1/order/add-to-card/',
-      {
-        method: 'POST',
-        data: {
-          productId: productId,
-        }
-      },
-    )
-      .then((response) => {
+    axios.post('api/v1/orders/create/', {
+      data: {
+        productId: productId,
+      }
+    })
+      .then(function (response) {
         console.log(response);
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.log(error);
-      });
+      })
   }
 
   render() {
@@ -70,7 +67,7 @@ class Main extends Component {
                   </div>
                   <button
                     className="product-list__button button"
-                    onClick={(product) => {
+                    onClick={() => {
                       this.addToCart(product.id)
                     }}
                     color="primary">
