@@ -1,0 +1,36 @@
+.product-list {
+  font-family: $font;
+
+  &__item {
+    padding: 20px;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    height: 460px;
+  }
+
+  &__img {
+    object-fit: contain;
+    height: 260px;
+    margin: 0 auto 10px auto;
+    width: 100%;
+  }
+
+  &__title {
+    font-family: $font;
+    height: 34px;
+    font-size: 22px;
+    @include text-ellipsis;
+  }
+
+  &__description {
+    font-family: $font;
+    height: 60px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+  }
+}

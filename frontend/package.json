@@ -2,10 +2,9 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev": "webpack --watch --mode development ./src/app/app.js --output ./static/main.js",
-    "build": "webpack --mode production ./src/index.js --output ./static/main.js"
+    "prod": "webpack --mode production",
+    "dev": "webpack --watch --mode development"
   },
   "keywords": [],
   "author": "",
@@ -16,10 +15,17 @@
     "@babel/preset-react": "7.6.3",
     "babel-loader": "8.0.6",
     "babel-plugin-transform-class-properties": "6.24.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.13.0",
     "prop-types": "15.7.2",
     "react": "16.10.2",
     "react-dom": "16.10.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
     "webpack": "4.41.1",
+    "webpack-build-notifier": "^2.0.0",
     "webpack-cli": "3.3.9"
   },
   "dependencies": {

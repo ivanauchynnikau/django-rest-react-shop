@@ -1,0 +1,47 @@
+.button {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  box-shadow: 0 0 8px #ddd;
+  background: #3f51b5;
+  padding: 8px 30px;
+  color: #fff;
+  transition: opacity .2s ease-out; }
+  .button:focus, .button:hover {
+    color: #fff;
+    opacity: .9; }
+  .button:active {
+    color: #fff;
+    opacity: .7; }
+
+.product-list {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif; }
+  .product-list__item {
+    padding: 20px;
+    box-shadow: 0 0 8px #ddd;
+    border-radius: 4px;
+    height: 460px; }
+  .product-list__img {
+    object-fit: contain;
+    height: 260px;
+    margin: 0 auto 10px auto;
+    width: 100%; }
+  .product-list__title {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    height: 34px;
+    font-size: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%; }
+  .product-list__description {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    height: 60px;
+    font-size: 18px;
+    margin-bottom: 10px; }
+  .product-list__button {
+    display: block;
+    width: 100%; }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtYWluLmNzcyIsInNvdXJjZVJvb3QiOiIifQ==*/
