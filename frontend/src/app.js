@@ -20,14 +20,10 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */}
       <Switch> { /* your usual react-router v4/v5 routing */}
-        <Switch>
-          <Container maxWidth="lg">
-            <TopBar/>
-            <Route exact path="/" render={() => <Main/>}/>
-            <Route exact path="/test" render={() => <Main/>}/>
-            <Route render={() => (<div>Miss</div>)}/>
-          </Container>
-        </Switch>
+        <div className="app-wrapper">
+          <TopBar/>
+          <Route exact path="/" render={() => <Main/>}/>
+        </div>
       </Switch>
     </ConnectedRouter>
   </Provider>

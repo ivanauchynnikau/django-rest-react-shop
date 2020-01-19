@@ -1,0 +1,24 @@
+.top-bar {
+  width: 100%;
+  background: $bg-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+
+  &__logo {
+    width: 100px;
+  }
+
+  &__button {
+    margin: 0 10px;
+  }
+
+  &__wrapper {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

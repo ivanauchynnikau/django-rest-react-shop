@@ -1,6 +1,11 @@
-@import './utils/variables';
-@import './utils/mixins';
+@import './utils/css/default';
+@import './utils/css/variables';
+@import './utils/css/mixins';
 
-@import './utils/default';
+@import './utils/css/form';
+@import './utils/css/utils';
+@import './utils/css/vaidation';
 
 @import './components/product-list/product-list.scss';
+@import './components/top-bar/top-bar';
+@import './components/login-modal/login-modal';
