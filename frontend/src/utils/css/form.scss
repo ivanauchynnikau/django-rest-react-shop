@@ -1,13 +1,18 @@
 .button {
+  border-radius: $border-radius;
   font-family: $font;
   border: none;
   background: transparent;
   font-size: 20px;
-  box-shadow: $box-shadow;
   background: $bg-color;
-  padding: 8px 30px;
+  padding: 12px 30px;
   color: $button-text-color;
   transition: opacity .2s ease-out;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   &:focus,
   &:hover {
@@ -24,12 +29,22 @@
 
 .form-item {
   margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
 
   &__input {
-    height: 44px;
-    padding: 10px;
-    border-radius: $border-radius;
+    font-size: 17px;
+    height: 32px;
+    padding: 10px 15px;
+    border-radius: 4px;
     margin-bottom: 2px;
+    box-shadow: none;
+    border: 1px solid #898686;
 
   }
 }

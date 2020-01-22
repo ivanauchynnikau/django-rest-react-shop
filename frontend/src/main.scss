@@ -1,5 +1,5 @@
-@import './utils/css/default';
 @import './utils/css/variables';
+@import './utils/css/default';
 @import './utils/css/mixins';
 
 @import './utils/css/form';
@@ -8,4 +8,6 @@
 
 @import './components/product-list/product-list.scss';
 @import './components/top-bar/top-bar';
-@import './components/login-modal/login-modal';
+@import './components/modal/modal';
+@import './components/login/login';
+@import './components/sign-up/sign-up';

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import LogInModal from './../login-modal/login-modal';
+import LogIn from './../login/login';
+import SignUp from './../sign-up/sign-up';
+import Modal from './../modal/modal';
 
 
 // TODO add props description!
@@ -15,25 +17,31 @@ class Main extends Component {
     };
 
     this.openLoginModal = this.openLoginModal.bind(this);
-    this.openSignUpModal = this.openSignUpModal.bind(this);
     this.closeLoginModal = this.closeLoginModal.bind(this);
+    this.openSignUpModal = this.openSignUpModal.bind(this);
+    this.closeSignUpModal = this.closeSignUpModal.bind(this);
   }
 
-  closeLoginModal () {
-    this.setState({isLoginModalSeen: false});
-  }
-
-  openLoginModal () {
+  openLoginModal() {
     this.setState({isLoginModalSeen: true});
   }
 
-  openSignUpModal () {
+  closeLoginModal() {;
+    this.setState({isLoginModalSeen: false});
+  }
+
+  openSignUpModal() {
     this.setState({isSignUpModalSeen: true});
+  }
+
+  closeSignUpModal() {
+    this.setState({isSignUpModalSeen: false});
   }
 
   render() {
     const {
-      isLoginModalSeen
+      isLoginModalSeen,
+      isSignUpModalSeen
     } = this.state;
 
     return (
@@ -46,22 +54,32 @@ class Main extends Component {
             <button
               className="button top-bar__button"
               onClick={this.openLoginModal}
-            >Login</button>
+            >Login
+            </button>
 
             <button
               className="button top-bar__button"
               onClick={this.openSignUpModal}
-            >Register</button>
+            >Register
+            </button>
           </div>
         </div>
-        {
-          isLoginModalSeen ?
-          <LogInModal
-            closeLoginModal={this.closeLoginModal}
+        <Modal
+          isOpen={isLoginModalSeen}
+          closeModal={this.closeLoginModal}
+        >
+          <LogIn
+            closeModal={this.closeLoginModal}
           />
-          : null
-        }
-
+        </Modal>
+        <Modal
+          isOpen={isSignUpModalSeen}
+          closeModal={this.closeSignUpModal}
+        >
+          <SignUp
+            closeModal={this.closeSignUpModal}
+          />
+        </Modal>
       </div>
     )
   }

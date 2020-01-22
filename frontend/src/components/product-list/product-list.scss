@@ -1,6 +1,4 @@
 .product-list {
-  font-family: $font;
-
   &__item {
     padding: 20px;
     box-shadow: $box-shadow;
@@ -16,17 +14,15 @@
   }
 
   &__title {
-    font-family: $font;
     height: 34px;
     font-size: 22px;
     @include text-ellipsis;
   }
 
   &__description {
-    font-family: $font;
-    height: 60px;
+    height: 80px;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
   }
 
   &__button {
