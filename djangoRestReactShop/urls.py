@@ -26,11 +26,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('', include('frontend.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/base-auth/', include('rest_framework.urls')),
     path('api/v1/auth/', include('djoser.urls')),
     path('api/v1/products/', include('product.urls')),
     path('api/v1/categories/', include('category.urls')),
     path('api/v1/orders/', include('order.urls')),
+    path('', include('frontend.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

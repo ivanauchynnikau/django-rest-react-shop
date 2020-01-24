@@ -3,26 +3,26 @@ import Box from '@material-ui/core/Box';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import axios from "axios";
+import ProductProvider from "./../../providers/products";
 
 class Main extends Component {
+  static defaultProps = {
+    productList: [],
+  };
+
   constructor(props) {
     super(props);
-
-    this.state = {
-      productList: []
-    };
 
     this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
-    // TODO move to provider
-    axios.get('api/v1/products/all', {method: 'GET'})
+    this.props.productProvider.getProductList()
       .then((response) => {
-        this.setState({productList: response.data});
+        console.log('get product list', response);
       })
       .catch((error) => {
-        console.log(error);
+        console.log('get product list error', error);
       });
   }
 
@@ -43,7 +43,7 @@ class Main extends Component {
   render() {
     const {
       productList
-    } = this.state;
+    } = this.props;
 
     return (
       <div className="product-list">
@@ -84,5 +84,11 @@ class Main extends Component {
 }
 
 export default connect(
-  null
+  state => ({
+    productList: state.products.productList
+  }),
+  dispatch => ({
+    productProvider: new ProductProvider(dispatch),
+    // redirectToAppsPage: () => {dispatch(push('/apps/'))},
+  })
 )(Main);
