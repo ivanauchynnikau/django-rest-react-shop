@@ -1,20 +1,9 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import Button from '@material-ui/core/Button';
 import ProductList from './../product-list/product-list';
+import TopBar from '../top-bar/top-bar';
 
 class Main extends Component {
-  // static propTypes = {
-  //   school: PropTypes.shape({
-  //     name: PropTypes.string,
-  //   }),
-  // };
-
-  // static defaultProps = {
-  //   school: 'asd'
-  // };
-
   constructor(props) {
     super(props);
 
@@ -26,7 +15,10 @@ class Main extends Component {
 
   render() {
     return (
-      <ProductList/>
+      <React.Fragment>
+        <TopBar/>
+        <ProductList/>
+      </React.Fragment>
     )
   }
 }

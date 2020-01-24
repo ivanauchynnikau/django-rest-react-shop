@@ -1,0 +1,24 @@
+import {
+  GET_PRODUCT_LIST,
+} from "../actions/products";
+
+import React from "react";
+
+const initialState = {
+  productList: [],
+  productListLoaded: false
+};
+
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case GET_PRODUCT_LIST:
+      const newState = Object.assign({}, {
+        productList: action.data,
+        schoolDone: true,
+      });
+      return newState;
+
+    default:
+      return state;
+  }
+}
