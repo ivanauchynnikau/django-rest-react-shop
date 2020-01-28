@@ -17,10 +17,8 @@ ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */}
         <Switch>
-
-          <Route exact path="/" render={() => <Main/>}/>
-          <Route exact path="/product" render={() => (<div>Match</div>)}/>
-
+          <Route exact path="/home" render={() => <Main/>}/>
+          <Route exact path="/home/product" render={() => (<div>Match</div>)}/>
         </Switch>
       </ConnectedRouter>
     </Provider>
