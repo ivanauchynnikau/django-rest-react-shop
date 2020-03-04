@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  application:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - ./:/home/django-rest-react-shop
+
