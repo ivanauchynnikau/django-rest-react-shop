@@ -4,5 +4,5 @@
     <option name="languageLevel" value="JSX" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (djangoRestReactShop)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Remote Python 3.8.1 Docker Compose (application at [/home/ivan/work/django-rest-react-shop/docker-compose.yaml])" project-jdk-type="Python SDK" />
 </project>
