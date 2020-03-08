@@ -10,15 +10,18 @@ const store = configureStore(/* provide initial state if any */);
 
 // Project
 import Main from './components/main/main'
-import TopBar from './components/top-bar/top-bar'
+import Product from './components/product/product'
+import TopBar from "./components/top-bar/top-bar";
 
 ReactDOM.render(
   <div className="app-wrapper">
     <Provider store={store}>
       <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */}
+      <TopBar/>
         <Switch>
-          <Route exact path="/" render={() => <Main/>}/>
-          <Route exact path="/product" render={() => (<div>Match</div>)}/>
+          <Route exact path="/" render={(props) => <Main {...props}/>}/>
+          <Route exact path="/products/:id/" render={(props) => <Product {...props}/>}/>
+          <Route exact path="" render={() => (<div><h1>404</h1></div>)}/>
         </Switch>
       </ConnectedRouter>
     </Provider>

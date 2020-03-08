@@ -3,7 +3,9 @@ import {connect} from "react-redux";
 import LogIn from './../login/login';
 import SignUp from './../sign-up/sign-up';
 import Modal from './../modal/modal';
-
+import {
+  Link,
+} from "react-router-dom";
 
 // TODO add props description!
 
@@ -26,7 +28,7 @@ class Main extends Component {
     this.setState({isLoginModalSeen: true});
   }
 
-  closeLoginModal() {;
+  closeLoginModal() {
     this.setState({isLoginModalSeen: false});
   }
 
@@ -48,7 +50,7 @@ class Main extends Component {
       <div className="top-bar">
         <div className="top-bar__wrapper">
           <div className="top-bar__left">
-            <span>LOGO</span> {/*TODO add logo image*/}
+            <Link className="top-bar__logo" to="/">LOGO</Link> {/*TODO add logo image*/}
           </div>
           <div className="top-bar__right">
             <button

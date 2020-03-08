@@ -15,10 +15,7 @@ class Main extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <TopBar/>
-        <ProductList/>
-      </React.Fragment>
+      <ProductList/>
     )
   }
 }

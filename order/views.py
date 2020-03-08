@@ -28,20 +28,16 @@ class OrderCreateView(viewsets.ViewSet):
         # get product by id
         product = Product.objects.get(id=product_id)
 
-        #  TODO move '0' separated file, '0' is ADDED_TO_CART = 0 from product model
+        #  TODO move '0' to separated file, '0' is ADDED_TO_CART = 0 from product model
         order = Order.objects.create(state=0, user=user)
         # save object to db
         order.save()
 
         # create many order items
         order_item = OrderItem.objects.create(item=product, order=order)
-        order_item1 = OrderItem.objects.create(item=product, order=order)
-        order_item2 = OrderItem.objects.create(item=product, order=order)
 
         # save order items to db
         order_item.save()
-        order_item1.save()
-        order_item2.save()
 
         # get order from db
         order_item_list = OrderItem.objects.filter(order=order)
@@ -57,7 +53,7 @@ class OrderCreateView(viewsets.ViewSet):
         return Response(status=200, data=order_item_list_json)
 
 
-class OrderListView(generics.ListAPIView):
+class OrderListView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderListSerializer
     queryset = Order.objects.all()
     permission_classes = (IsOwner, )
