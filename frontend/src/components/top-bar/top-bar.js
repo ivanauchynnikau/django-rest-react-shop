@@ -50,7 +50,9 @@ class Main extends Component {
       <div className="top-bar">
         <div className="top-bar__wrapper">
           <div className="top-bar__left">
-            <Link className="top-bar__logo" to="/">LOGO</Link> {/*TODO add logo image*/}
+            <Link className="top-bar__logo" to="/">
+              SHOP
+            </Link>
           </div>
           <div className="top-bar__right">
             <button

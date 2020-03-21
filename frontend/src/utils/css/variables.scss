@@ -1,16 +1,19 @@
 // defaults
-$bg-color: #3f51b5;
+$bg-color: #1BA098;
 $box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+$box-shadow-hover: 0 0 22px rgba(0, 0, 0, .2);
 $border-radius: 4px;
 
 // buttons
-$button-text-color: #fff;
-$button-bg: #3f51b5;
+$btn-text: #fff;
+$btn-bg: #1BA098;
+$btn-bg-hover: darken( $btn-bg, 7%);
+$btn-bg-active: darken( $btn-bg, 10%);
 
+$btn-close-color: #3e3e3e;
+$btn-close-hover: darken( $btn-close-color, 10% );
+$btn-close-active: darken( $btn-close-color, 30% );
 
-$button-close-color: #3e3e3e;
-$button-close-hover-color: darken( $button-close-color, 10% );
-$button-close-active-color: darken( $button-close-color, 30% );
 
 // to make color lighter
 //lighten( $base-color, 10% );
@@ -20,6 +23,7 @@ $overlay-color: rgba(0, 0, 0, .5);
 
 // fonts
 $font: "Roboto", "Helvetica", "Arial", sans-serif;
+$text-color: #051622;
 
 
 

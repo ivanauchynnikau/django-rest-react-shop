@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('api/v1/base-auth/', include('rest_framework.urls')),
     path('api/v1/auth/', include('djoser.urls')),
     path('api/v1/products/', include('product.urls')),

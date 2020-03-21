@@ -1,0 +1,27 @@
+.button {
+  border-radius: $border-radius;
+  font-family: $font;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  background: $bg-color;
+  padding: 12px 30px;
+  color: $btn-text;
+  transition: background .2s ease-out;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:focus,
+  &:hover {
+    background: $btn-bg-hover;
+    color: $btn-text;
+  }
+
+  &:active {
+    background: $btn-bg-hover;
+    color: $btn-text;
+  }
+}

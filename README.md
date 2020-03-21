@@ -1,3 +1,5 @@
+// TODO update readme
+
 # DjangoRestReactShop
 
 

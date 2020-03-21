@@ -12,6 +12,7 @@ const store = configureStore(/* provide initial state if any */);
 import Main from './components/main/main'
 import Product from './components/product/product'
 import TopBar from "./components/top-bar/top-bar";
+import Page404 from "./components/page-404/page-404";
 
 ReactDOM.render(
   <div className="app-wrapper">
@@ -21,7 +22,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" render={(props) => <Main {...props}/>}/>
           <Route exact path="/products/:id/" render={(props) => <Product {...props}/>}/>
-          <Route exact path="" render={() => (<div><h1>404</h1></div>)}/>
+          <Route exact path="" render={() => <Page404/>}/>
         </Switch>
       </ConnectedRouter>
     </Provider>
