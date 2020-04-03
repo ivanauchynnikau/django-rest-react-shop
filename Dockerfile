@@ -9,5 +9,5 @@ RUN apt-get update && \
 COPY requirements.txt /home/django-rest-react-shop/
 RUN pip3 install --no-cache -r requirements.txt
 CMD python /home/django-rest-react-shop/manage.py migrate && \
-    python /home/django-rest-react-shop/manage.py runserver 0.0.0.0:8080
-EXPOSE 8080
+    python /home/django-rest-react-shop/manage.py runserver 0.0.0.0:8000
+EXPOSE 8000
