@@ -1,4 +1,4 @@
-Django==2.2.6
+Django==2.2.13
 django-templated-mail==1.1.1
 djangorestframework==3.10.3
 djoser==0.4.1
