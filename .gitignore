@@ -28,7 +28,7 @@ covetage_html/
 
 # PyCharm project folder
 #########################
-#.idea
+.idea
 .vagrant
 
 # OS generated files #
