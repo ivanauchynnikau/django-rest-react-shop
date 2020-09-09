@@ -1,6 +1,7 @@
 # DjangoRestReactShop
 
 ### Requirements
+* Ubuntu 18.04
 * Python 3.6.1
 
 ### 1. Clone our repository
@@ -34,17 +35,3 @@ to install `pyenv`. After installing, run this:
     python manage.py runserver 0:8080
 
 *Enjoy!*
-
-
-
-
-
-
-
-
-
-
-
-Python 3.7.0
-
-Ubuntu 18.04
