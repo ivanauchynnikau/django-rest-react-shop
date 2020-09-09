@@ -4,6 +4,10 @@ from product.models import Product
 
 class ProductDetailSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    category = serializers.SerializerMethodField()
+
+    def get_category(self, obj):
+        return obj.title
 
     class Meta:
         model = Product
