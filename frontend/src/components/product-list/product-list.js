@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import axios from "axios";
 import ProductProvider from "./../../providers/products";
 import {Link} from "react-router-dom";
-import { store } from 'react-notifications-component';
 
 class Main extends Component {
   static defaultProps = {
@@ -32,6 +31,7 @@ class Main extends Component {
     event.preventDefault();
     event.stopPropagation();
 
+    // TODO move to provider
     axios.post('api/v1/orders/create/', {
       data: {
         productId: productId,
@@ -39,21 +39,6 @@ class Main extends Component {
     })
       .then(function (response) {
         console.log(response);
-
-        store.addNotification({
-          title: "Wonderful!",
-          message: "teodosii@react-notifications-component",
-          type: "success",
-          insert: "top",
-          container: "top-right",
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 5000,
-            onScreen: true
-          }
-        });
-
       })
       .catch(function (error) {
         console.log(error);
