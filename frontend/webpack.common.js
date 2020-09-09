@@ -1,8 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -23,7 +22,13 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
-      },{
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+        options: { outputPath: 'public/fonts' }
+      },
+      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: {
           loader: 'file-loader',
@@ -32,34 +37,37 @@ module.exports = {
             outputPath: 'static/img/'
           }
         }
-      },{
+      },
+      {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '/public/path/to/',
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+                sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ],
       }
     ]
   },
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        terserOptions: {
-          // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
-        }
-      }),
-    ],
-  },
   plugins: [
     new CleanWebpackPlugin(),
-    new WebpackBuildNotifierPlugin({
-      title: 'react-shop',
-    }),
-    new ExtractTextPlugin({filename: 'main.css'}),
+    new WebpackBuildNotifierPlugin({title: 'react-shop'}),
+    new MiniCssExtractPlugin()
   ],
 };
 
