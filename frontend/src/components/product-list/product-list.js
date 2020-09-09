@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import axios from "axios";
 import ProductProvider from "./../../providers/products";
 import {Link} from "react-router-dom";
+import {NotificationManager} from 'react-notifications';
 
 class Main extends Component {
   static defaultProps = {
@@ -37,11 +38,11 @@ class Main extends Component {
         productId: productId,
       }
     })
-      .then(function (response) {
-        console.log(response);
+      .then((response) => {
+        NotificationManager.success('Product was added to cart','', 5000);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((error) => {
+        NotificationManager.warning('Something went wrong!');
       })
   }
 

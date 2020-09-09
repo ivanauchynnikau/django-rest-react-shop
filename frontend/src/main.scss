@@ -2,13 +2,12 @@
 @import './utils/css/default';
 @import './utils/css/mixins';
 
+@import '../node_modules/react-notifications/lib/notifications.css';
+
 @import './utils/css/form';
 @import './utils/css/utils';
 @import './utils/css/vaidation';
 @import './utils/css/buttons';
-
-// vendor
-//@import './../node_modules/react-notifications-component/dist/theme.css';
 
 // components
 @import './components/product-list/product-list.scss';
