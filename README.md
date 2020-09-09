@@ -21,7 +21,6 @@ to install `pyenv`. After installing, run this:
 ### 3. Activate virtual environment
     source /home/[YOUR_USERNAME]/.pyenv/versions/django-rest-react-shop-3.6.1/bin/activate
 
-
 ### 4. Install requirements
     pip install -r requirements.txt
 
@@ -31,7 +30,19 @@ to install `pyenv`. After installing, run this:
 ### 7. Create admin account
     python manage.py createsuperuser
 
-### 8. Run server
+### 8. Install frontend dependencies
+    cd frontend
+    npm i
+
+### 9. Build frontend
+
+####for development
+    npm run prod
+
+####for production
+    npm run prod
+
+### 10. Run server
     python manage.py runserver 0:8080
 
 *Enjoy!*
