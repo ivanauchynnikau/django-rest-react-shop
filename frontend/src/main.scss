@@ -2,7 +2,7 @@
 @import './utils/css/default';
 @import './utils/css/mixins';
 
-@import '../node_modules/react-notifications/lib/notifications.css';
+@import '~react-notifications/dist/react-notifications.css';
 
 @import './utils/css/form';
 @import './utils/css/utils';

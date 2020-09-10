@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {Route, Switch} from 'react-router' // react-router v4/v5
+import {NotificationContainer} from 'react-notifications';
 import {ConnectedRouter} from 'connected-react-router'
 import configureStore, {history} from './configureStore'
 
@@ -18,7 +19,7 @@ ReactDOM.render(
   <div className="app-wrapper">
     <Provider store={store}>
       <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */}
-      <TopBar/>
+        <TopBar/>
         <Switch>
           <Route exact path="/" render={(props) => <Main {...props}/>}/>
           <Route exact path="/products/:id/" render={(props) => <Product {...props}/>}/>
@@ -26,6 +27,7 @@ ReactDOM.render(
         </Switch>
       </ConnectedRouter>
     </Provider>
+    <NotificationContainer/>
   </div>,
   document.getElementById('react-root')
 );
