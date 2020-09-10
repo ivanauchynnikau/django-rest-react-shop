@@ -23,6 +23,7 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader']
       },
+
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader',

@@ -7,3 +7,7 @@ body {
   font-size: 16px;
   color: $text-color;
 }
+
+.notification:before {
+  content: none;
+}
