@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'djoser',
     'frontend',
     'order',
+    'accounts',
     'orderItem',
 ]
 

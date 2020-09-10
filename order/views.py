@@ -13,8 +13,6 @@ from product.models import Product
 
 
 class OrderCreateView(viewsets.ViewSet):
-    permission_classes = (IsOwner, )
-
     def create(self, request):
         # print something to console
         # print(request.data)
