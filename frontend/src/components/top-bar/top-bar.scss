@@ -1,6 +1,6 @@
 .top-bar {
   width: 100%;
-  background: $bg-color;
+  background: $main-color;
   box-shadow: $box-shadow;
   position: fixed;
   top: 0;
@@ -31,6 +31,8 @@
 
   &__button {
     margin: 0 10px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   &__wrapper {

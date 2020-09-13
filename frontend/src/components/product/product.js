@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import LocalCart from "../../providers/local-cart";
 import {Link} from "react-router-dom";
 import {CURRENCY} from "../../utils/js/config";
+import {NotificationManager} from 'react-notifications';
 
 
 class Product extends Component {
@@ -39,6 +40,7 @@ class Product extends Component {
     };
 
     this.props.localCartProvider.addProductToCart(cartItem);
+    NotificationManager.success(`"${cartItem.title}" added to cart!`, '', 100000000);
   }
 
   render() {

@@ -60,13 +60,15 @@ class Main extends Component {
             <button
               className="button top-bar__button"
               onClick={this.openLoginModal}
-            >Login
+            >
+              Login
             </button>
 
             <button
               className="button top-bar__button"
               onClick={this.openSignUpModal}
-            >Register
+            >
+              Sign up
             </button>
             <TopBarCart/>
           </div>

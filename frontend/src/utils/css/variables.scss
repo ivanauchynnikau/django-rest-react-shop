@@ -1,8 +1,9 @@
 // colors
-$red: #a01b1f;
+$main-color: #1BA098;
+$warning-color: #a05b1b;
+$danger-color: #a01b1f;
 
 // defaults
-$bg-color: #1BA098;
 $box-shadow: 0 0 8px rgba(0, 0, 0, .2);
 $box-shadow-hover: 0 0 22px rgba(0, 0, 0, .2);
 $border-radius: 4px;
@@ -13,9 +14,13 @@ $btn-bg: #1BA098;
 $btn-bg-hover: darken( $btn-bg, 7%);
 $btn-bg-active: darken( $btn-bg, 18%);
 
-$btn-bg-red: #a01b1f;
-$btn-bg-red-hover: darken( $btn-bg-red, 4%);
-$btn-bg-red-active: darken( $btn-bg-red, 10%);
+$btn-bg-danger: #a01b1f;
+$btn-bg-danger-hover: darken( $btn-bg-danger, 4%);
+$btn-bg-danger-active: darken( $btn-bg-danger, 10%);
+
+$btn-bg-ghost: #1BA098;
+$btn-bg-ghost-hover: darken( $btn-bg-ghost, 8%);
+$btn-bg-ghost-active:darken( $btn-bg-ghost, 12%);
 
 $btn-close-color: #3e3e3e;
 $btn-close-hover: darken( $btn-close-color, 10% );

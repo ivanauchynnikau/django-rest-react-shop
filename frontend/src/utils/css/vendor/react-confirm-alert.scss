@@ -1,0 +1,29 @@
+.react-confirm-alert {
+  &-blur {
+    filter: none !important;
+  }
+
+  &__modal {
+    background: #fff;
+    padding: 25px;
+    box-shadow: $box-shadow;
+
+    &-text {
+      margin-bottom: 25px;
+      font-size: 22px;
+    }
+
+    &-buttons {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    &-button {
+      & + & {
+        margin-left: 25px;
+      }
+    }
+  }
+}
+
+

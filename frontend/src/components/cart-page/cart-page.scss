@@ -2,6 +2,10 @@
   margin-bottom: 70px;
 
   &__item {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+
     &-container {
       display: flex;
     }
@@ -14,6 +18,13 @@
     &-img {
       max-width: 300px;
       margin-right: 20px;
+      transition: opacity .2s ease-out;
+      text-decoration: none;
+
+      &:active,
+      &:hover {
+        opacity: .8;
+      }
     }
 
     &-description,
@@ -43,6 +54,10 @@
 
     &-details {
       font-size: 22px;
+
+      &-text {
+        margin-bottom: 6px;
+      }
     }
   }
 

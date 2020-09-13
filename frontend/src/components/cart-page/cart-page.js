@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import uuid from 'react-uuid'
 import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
+import {confirmAlert} from 'react-confirm-alert';
 
 
 class CartPage extends Component {
@@ -12,9 +13,6 @@ class CartPage extends Component {
     this.state = {
       orderList: props.orderList
     }
-
-    this.getTotalPrice = this.getTotalPrice.bind(this);
-    this.deleteOrderItem = this.deleteOrderItem.bind(this);
   }
 
   static defaultProps = {
@@ -25,12 +23,41 @@ class CartPage extends Component {
     this.setState({orderList: nextProps.orderList});
   }
 
-  submitOrder () {
-    console.log(123);
+  submitOrder = () => {
+    // TODO add request
+    // TODO make sign up
   }
 
-  deleteOrderItem (id) {
-    console.log(id);
+  deleteOrderItem = (itemId) => {
+    // TODO add request
+    console.log(itemId);
+    // TODO add notification
+  }
+
+  showConfirmDeleteOrderItemModal = (item) => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className='react-confirm-alert__modal'>
+            <div className="react-confirm-alert__modal-text">{`Are you sure you want to delete "${item.title}"?`}</div>
+            <div className="react-confirm-alert__modal-buttons">
+              <button
+                onClick={() => {this.deleteOrderItem(item.id)}}
+                className="react-confirm-alert__modal-button button _ghost"
+              >
+                Yes
+              </button>
+              <button
+                className="react-confirm-alert__modal-button button"
+                onClick={onClose}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        );
+      }
+    });
   }
 
   getTotalPrice () {
@@ -41,7 +68,7 @@ class CartPage extends Component {
     if (!orderList) return 0;
     if (!orderList.length) return 0;
 
-    const totalPrice = orderList.reduce((sum, item) => sum + (parseFloat(item.price)), 0);
+    const totalPrice = orderList.reduce((sum, item) => sum + (parseFloat(item.price)), 0).toFixed(2);
     return `${CURRENCY}${totalPrice}`;
   }
 
@@ -64,30 +91,34 @@ class CartPage extends Component {
                 </div>
                 <div className="cart-page__item-container">
                   <div className="cart-page__item-left">
-                    <img
-                      className="cart-page__item-img"
-                      src={item.image}
-                      alt={item.description}
-                      title={item.title}
-                    />
+                    <Link
+                      to={`/products/${item.id}`}
+                      className="cart-page__item-title"
+                    >
+                      <img
+                        className="cart-page__item-img"
+                        src={item.image}
+                        alt={item.description}
+                        title={item.title}
+                      />
+                    </Link>
                   </div>
                   <div className="cart-page__item-center">
                     <div className="cart-page__item-description">
-                      Description:<br />{item.description}
+                      <b>Description:</b><br />{item.description}
                     </div>
                     <div className="cart-page__item-price">
-                      Price:<br />{CURRENCY}{item.price}
+                      <b>Price:</b><br />{CURRENCY}{item.price}
                     </div>
                   </div>
                   <div className="cart-page__item-right">
                     <button
-                      onClick={() => {this.deleteOrderItem(item.id)}}
-                      className="button _delete">
+                      onClick={() => {this.showConfirmDeleteOrderItemModal(item)}}
+                      className="button _danger">
                       Delete
                     </button>
                   </div>
                 </div>
-                <hr/>
               </div>
             )
           })
@@ -102,8 +133,12 @@ class CartPage extends Component {
               <div className="container">
                 <div className="cart-page__submit-container">
                   <div className="cart-page__submit-details">
-                    <div>Total price: {this.getTotalPrice()}</div>
-                    <div>Total quantity: {orderList.length}</div>
+                    <div className="cart-page__submit-details-text">
+                      Total price: <b>{this.getTotalPrice()}</b>
+                    </div>
+                    <div className="cart-page__submit-details-text">
+                      Total quantity: <b>{orderList.length}</b>
+                    </div>
                   </div>
                   <button
                     className="cart-page__submit-btn button"
