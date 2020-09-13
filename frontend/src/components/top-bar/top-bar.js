@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import LogIn from './../login/login';
 import SignUp from './../sign-up/sign-up';
 import Modal from './../modal/modal';
+import TopBarCart from './../top-bar-cart/top-bar-cart';
 import {
   Link,
 } from "react-router-dom";
@@ -48,7 +49,8 @@ class Main extends Component {
 
     return (
       <div className="top-bar">
-        <div className="top-bar__wrapper">
+        <div className="container">
+          <div className="top-bar__wrapper">
           <div className="top-bar__left">
             <Link className="top-bar__logo" to="/">
               SHOP
@@ -66,7 +68,9 @@ class Main extends Component {
               onClick={this.openSignUpModal}
             >Register
             </button>
+            <TopBarCart/>
           </div>
+        </div>
         </div>
         <Modal
           isOpen={isLoginModalSeen}

@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
     case GET_PRODUCT_LIST:
       const newState = Object.assign({}, {
         productList: action.data,
-        schoolDone: true,
+        productListLoaded: true,
       });
       return newState;
 

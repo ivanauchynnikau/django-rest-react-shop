@@ -1,11 +1,19 @@
 .app-wrapper {
-  margin-top: 50px;
+  margin-top: 100px;
+  min-width: 320px;
+  overflow-x: auto;
 }
 
 body {
   font-family: $font;
   font-size: 16px;
   color: $text-color;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .notification:before {

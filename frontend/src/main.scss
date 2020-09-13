@@ -10,11 +10,14 @@
 @import './utils/css/buttons';
 
 // components
-@import './components/product-list/product-list.scss';
+@import './components/product-list-page/product-list-page';
 @import './components/top-bar/top-bar';
 @import './components/modal/modal';
 @import './components/login/login';
-@import './components/product/product';
+@import './components/product-page/product-page';
 @import './components/sign-up/sign-up';
+@import './components/top-bar-cart/top-bar-cart';
+@import './components/product/product';
+@import './components/cart-page/cart-page';
 @import './components/page-404/page-404';
 

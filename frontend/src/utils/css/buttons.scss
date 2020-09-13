@@ -21,7 +21,22 @@
   }
 
   &:active {
-    background: $btn-bg-hover;
+    background: $btn-bg-active;
     color: $btn-text;
+  }
+
+  &._delete {
+    background: $btn-bg-red;
+
+    &:focus,
+    &:hover {
+      background: $btn-bg-red-hover;
+      color: $btn-text;
+    }
+
+    &:active {
+      background: $btn-bg-red-active;
+      color: $btn-text;
+    }
   }
 }

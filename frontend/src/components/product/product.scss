@@ -1,18 +1,66 @@
 .product {
-  padding: 40px;
+  padding: 20px;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  transition: all .2s ease-out;
+  background: #fff;
 
-  &__main {
+  &__link {
+    text-decoration: none;
+    color: $text-color;
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &:focus,
+  &:hover {
+    box-shadow: $box-shadow-hover;
+  }
+
+  &._cart {
     display: flex;
-  }
+    box-shadow: none;
+    cursor: default;
+    width: 100%;
+    margin: 0;
 
-  &__left {
-    width: 50%;
-    padding: 10px;
-  }
+    .product {
+      &:focus,
+      &:hover {
+        box-shadow: none;
+      }
 
-  &__right {
-    padding: 10px;
-    width: 50%;
+      &__title {
+        width: 100%;
+      }
+
+      &__link {
+        width: 100%;
+      }
+
+      &__top {
+        width: 35%;
+      }
+
+      &__bottom {
+        width: 65%;
+      }
+
+      &__container {
+        display: flex;
+      }
+
+      &__img {
+        height: 300px;
+      }
+
+      &__button {
+        max-width: 220px;
+      }
+    }
   }
 
   &__img {
@@ -25,23 +73,35 @@
   &__title {
     height: 34px;
     font-size: 22px;
-    width: 100%;
-    min-width: 100%;
     @include text-ellipsis;
   }
 
   &__description {
+    height: 65px;
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    max-height: 100px;
+    overflow: hidden;
   }
 
-  &__category {
-    font-size: 18px;
-    margin-bottom: 8px;
+  &__price {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  &__availability {
+    font-size: 14px;
+    margin-bottom: 20px;
   }
 
   &__button {
     display: block;
     width: 100%;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

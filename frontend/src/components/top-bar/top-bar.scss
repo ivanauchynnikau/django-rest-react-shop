@@ -1,6 +1,7 @@
 .top-bar {
   width: 100%;
   background: $bg-color;
+  box-shadow: $box-shadow;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,9 +12,21 @@
     width: 100px;
     color: #fff;
     font-size: 30px;
-    font-family: Arial;
+    font-family: Roboto, sans-serif;
     text-decoration: none;
     font-weight: bold;
+    transition: opacity .2s ease-out;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: .8;
+    }
+  }
+
+  &__right {
+    display: flex;
+    justify-content: flex-end;
   }
 
   &__button {
