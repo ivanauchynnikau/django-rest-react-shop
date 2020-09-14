@@ -8,7 +8,6 @@ import {NotificationManager} from 'react-notifications';
 
 
 class Product extends Component {
-
   static propTypes = {
     product: PropTypes.object.isRequired,
     customClass: PropTypes.string,
@@ -36,11 +35,12 @@ class Product extends Component {
       image: product.image,
       category: product.category,
       price: product.price,
-      description: product.description
+      description: product.description,
+      inStock: product.in_stock
     };
 
     this.props.localCartProvider.addProductToCart(cartItem);
-    NotificationManager.success(`"${cartItem.title}" added to cart!`, '', 100000000);
+    NotificationManager.success(`"${cartItem.title}" added to cart!`);
   }
 
   render() {
@@ -71,19 +71,21 @@ class Product extends Component {
               <div className="product__description">
                 {product.description}
               </div>
-              <div className="product__availability">
-                {product.available ? 'available' : 'not available'}
+              <div className="product__in-stock">
+                In stock: {product.in_stock}
               </div>
               <div className="product__price">
                 {CURRENCY}{product.price}
               </div>
               <button
+                disabled={!product.in_stock}
+                title={!product.in_stock ? 'Product is unavailable' : ''}
                 className="product__button button"
                 onClick={(e) => {
                   this.addToCart(e, product)
                 }}
               >
-                Buy
+                Add to cart
               </button>
             </div>
           </div>

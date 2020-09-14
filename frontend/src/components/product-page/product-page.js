@@ -33,7 +33,7 @@ class ProductPage extends Component {
     return (
       <div className="product-page">
         <Product
-          customClass="_cart"
+          customClass="_product-page"
           key={uuid()}
           product={product}
         />

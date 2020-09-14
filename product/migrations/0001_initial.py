@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=64, verbose_name='Title')),
                 ('image', models.ImageField(blank=True, max_length=64, upload_to='static/images', verbose_name='Image')),
                 ('description', models.CharField(max_length=256, verbose_name='Description')),
-                ('stock', models.PositiveIntegerField(default=0)),
+                ('in_stock', models.PositiveIntegerField(default=0)),
                 ('available', models.BooleanField(default=True, verbose_name='Is available')),
                 ('price', models.DecimalField(decimal_places=2, default=0, max_digits=8, verbose_name='Price')),
                 ('category', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='products', to='category.Category')),

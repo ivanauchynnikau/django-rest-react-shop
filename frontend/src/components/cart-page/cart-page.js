@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import uuid from 'react-uuid'
+import LocalCart from "../../providers/local-cart";
 import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
 import {confirmAlert} from 'react-confirm-alert';
+import {NotificationManager} from 'react-notifications';
 
 
 class CartPage extends Component {
@@ -28,10 +30,12 @@ class CartPage extends Component {
     // TODO make sign up
   }
 
-  deleteOrderItem = (itemId) => {
-    // TODO add request
-    console.log(itemId);
-    // TODO add notification
+  deleteOrderItem = (cartItem, closeModal) => {
+    if (!cartItem) return;
+
+    this.props.localCartProvider.removeProduct(cartItem.id);
+    NotificationManager.success(`"${cartItem.title}" was deleted!`);
+    closeModal();
   }
 
   showConfirmDeleteOrderItemModal = (item) => {
@@ -42,7 +46,7 @@ class CartPage extends Component {
             <div className="react-confirm-alert__modal-text">{`Are you sure you want to delete "${item.title}"?`}</div>
             <div className="react-confirm-alert__modal-buttons">
               <button
-                onClick={() => {this.deleteOrderItem(item.id)}}
+                onClick={() => {this.deleteOrderItem(item, onClose)}}
                 className="react-confirm-alert__modal-button button _ghost"
               >
                 Yes
@@ -80,7 +84,7 @@ class CartPage extends Component {
     return (
       <div className="cart-page">
         {
-          orderList ? orderList.map((item) => {
+          orderList && orderList.length ? orderList.map((item) => {
             return (
               <div
                 className="cart-page__item"
@@ -93,7 +97,7 @@ class CartPage extends Component {
                   <div className="cart-page__item-left">
                     <Link
                       to={`/products/${item.id}`}
-                      className="cart-page__item-title"
+                      className="cart-page__item-link"
                     >
                       <img
                         className="cart-page__item-img"
@@ -146,7 +150,7 @@ class CartPage extends Component {
                       this.submitOrder()
                     }}
                   >
-                    Submit order
+                    Buy
                   </button>
                 </div>
               </div>
@@ -162,5 +166,7 @@ export default connect(
   state => ({
     orderList: state.localCart.orderList
   }),
-  dispatch => ({})
+  dispatch => ({
+    localCartProvider: new LocalCart(dispatch),
+  })
 )(CartPage);

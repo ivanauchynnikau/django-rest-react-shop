@@ -12,6 +12,18 @@
 
   &:disabled {
     cursor: not-allowed;
+    background: $btn-bg-disabled;
+
+    &:focus,
+    &:hover {
+      background: $btn-bg-disabled;
+      color: $btn-text;
+    }
+
+    &:active {
+      background: $btn-bg-disabled;
+      color: $btn-text;
+    }
   }
 
   &:focus,

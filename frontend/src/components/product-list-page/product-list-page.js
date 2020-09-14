@@ -42,6 +42,5 @@ export default connect(
   }),
   dispatch => ({
     productProvider: new ProductProvider(dispatch),
-    // redirectToAppsPage: () => {dispatch(push('/apps/'))},
   })
 )(ProductListPage);

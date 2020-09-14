@@ -2,12 +2,16 @@
   margin-bottom: 70px;
 
   &__item {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
     border-bottom: 1px solid #ddd;
 
     &-container {
       display: flex;
+
+      @media (max-width: $small) {
+        display: block;
+      }
     }
 
     &-title {
@@ -21,16 +25,28 @@
       transition: opacity .2s ease-out;
       text-decoration: none;
 
+      @media (max-width: $small) {
+        width: 100%;
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        margin-bottom: 10px;
+      }
+
       &:active,
       &:hover {
         opacity: .8;
       }
     }
 
-    &-description,
-    &-price {
+    &-description {
       font-size: 20px;
       margin-bottom: 10px;
+    }
+
+    &-price {
+      font-size: 20px;
+      margin-bottom: 20px;
     }
 
     &-center {
@@ -46,6 +62,7 @@
     left: 0;
     right: 0;
     background: #fff;
+    min-width: 290px;
 
     &-container {
       display: flex;
@@ -54,6 +71,7 @@
 
     &-details {
       font-size: 22px;
+      padding-right: 15px;
 
       &-text {
         margin-bottom: 6px;
