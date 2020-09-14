@@ -3,9 +3,9 @@ import {NotificationManager} from "react-notifications";
 import DataProvider from '../utils/js/data-provider';
 
 
-export default class ProductProvider extends DataProvider {
-  addToCart(productId) {
-    return axios.post('api/v1/orders/create/', {data: {productId}})
+export default class OrderProvider extends DataProvider {
+  addOrder(productIdsArray) {
+    return axios.post('api/v1/orders/create/', {data: {productIdsArray}})
       .then((response) =>  {
         return response.data;
       })

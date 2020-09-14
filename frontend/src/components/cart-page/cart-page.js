@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import uuid from 'react-uuid'
 import LocalCart from "../../providers/local-cart";
+import OrderProvider from "../../providers/orders";
 import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
 import {confirmAlert} from 'react-confirm-alert';
@@ -26,8 +27,20 @@ class CartPage extends Component {
   }
 
   submitOrder = () => {
-    // TODO add request
-    // TODO make sign up
+    const {
+      orderList
+    }  = this.state;
+
+    if (!orderList) return ;
+    if (!orderList.length) return;
+
+    const orderIdsArray = orderList.map((order) => order.id);
+
+    this.props.orderProvider.addOrder(orderIdsArray)
+      .then((response) => {
+        console.log(response);
+        NotificationManager.success('Order № ... was created!');
+      });
   }
 
   deleteOrderItem = (cartItem, closeModal) => {
@@ -168,5 +181,6 @@ export default connect(
   }),
   dispatch => ({
     localCartProvider: new LocalCart(dispatch),
+    orderProvider: new OrderProvider(dispatch),
   })
 )(CartPage);

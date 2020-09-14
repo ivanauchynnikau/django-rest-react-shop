@@ -1,4 +1,5 @@
 import React  from 'react';
+import cookie from 'js-cookie';
 
 
 export default class DataProvider {
@@ -13,7 +14,16 @@ export default class DataProvider {
     this._action = action !== undefined ? !! action : true;
   }
 
+  get baseHeaders() {
+    return {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-CSRFToken': cookie.get('csrftoken'),
+    };
+  };
+
   dispatch(action, data) {
+    debugger
     const _action = Object.assign({type: action + this._actionSuffix,}, data);
     this._action && this._dispatch(_action);
   }
