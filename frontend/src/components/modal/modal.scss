@@ -13,12 +13,17 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 540px;
+    min-width: 400px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: $box-shadow;
     background: #fff;
+
+    @media (max-width: $small) {
+    	padding: 15px;
+      min-width: 260px;
+    }
   }
 }

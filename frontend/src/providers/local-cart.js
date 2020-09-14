@@ -27,9 +27,21 @@ export default class LocalCart extends DataProvider {
     this.dispatch(UPDATE_CART, {data: updatedCartItemsArray});
   }
 
-  removeItem (){
-    // TODO finish
-    localStorage.removeItem('myCat'); // вернёт undefined
+  removeProduct (productId) {
+    const cart = localStorage.getItem(LOCAL_STORAGE_KEYS.LOCAL_CART);
+
+    if (cart && JSON.parse(cart).length) {
+      const cartProductsArray = JSON.parse(cart);
+      const itemIndex = cartProductsArray.findIndex((item) => productId === item.id);
+
+      if (itemIndex === undefined) return;
+
+      cartProductsArray.splice(itemIndex, 1);
+
+      localStorage.setItem(LOCAL_STORAGE_KEYS.LOCAL_CART, JSON.stringify(cartProductsArray));
+
+      this.dispatch(UPDATE_CART, {data: cartProductsArray});
+    }
   }
 
   getProductsInCart () {

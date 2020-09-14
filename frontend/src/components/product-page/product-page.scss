@@ -1,6 +1,10 @@
 .product-page {
   padding: 40px;
 
+  @media (max-width: $small) {
+    padding: 10px;
+  }
+
   &__main {
     display: flex;
   }

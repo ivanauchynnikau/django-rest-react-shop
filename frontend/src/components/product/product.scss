@@ -20,12 +20,13 @@
     box-shadow: $box-shadow-hover;
   }
 
-  &._cart {
+  &._product-page {
     display: flex;
     box-shadow: none;
     cursor: default;
     width: 100%;
     margin: 0;
+    padding: 0;
 
     .product {
       &:focus,
@@ -43,14 +44,28 @@
 
       &__top {
         width: 35%;
+
+        @media (max-width: $small) {
+          width: 100%;
+        }
       }
 
       &__bottom {
-        width: 65%;
+        width: 60%;
+        padding-left: 5%;
+
+        @media (max-width: $small) {
+          width: 100%;
+          padding-left: 0;
+        }
       }
 
       &__container {
         display: flex;
+
+        @media (max-width: $small) {
+          display: block;
+        }
       }
 
       &__img {
@@ -89,7 +104,7 @@
     margin-bottom: 10px;
   }
 
-  &__availability {
+  &__in-stock {
     font-size: 14px;
     margin-bottom: 20px;
   }
