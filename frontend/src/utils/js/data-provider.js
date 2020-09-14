@@ -23,7 +23,6 @@ export default class DataProvider {
   };
 
   dispatch(action, data) {
-    debugger
     const _action = Object.assign({type: action + this._actionSuffix,}, data);
     this._action && this._dispatch(_action);
   }
