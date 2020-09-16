@@ -7,6 +7,7 @@ import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
 import {confirmAlert} from 'react-confirm-alert';
 import {NotificationManager} from 'react-notifications';
+import {IS_AUTHENTICATED} from '../../context';
 
 
 class CartPage extends Component {
@@ -49,6 +50,17 @@ class CartPage extends Component {
     this.props.localCartProvider.removeProduct(cartItem.id);
     NotificationManager.success(`"${cartItem.title}" was deleted!`);
     closeModal();
+  }
+
+  onSubmitCLick = () => {
+    if (IS_AUTHENTICATED) {
+      this.submitOrder();
+      return;
+    }
+
+    // TODO
+    console.log('need authorize');
+    // this.showLoginSignUpBlock();
   }
 
   showConfirmDeleteOrderItemModal = (item) => {
@@ -159,9 +171,7 @@ class CartPage extends Component {
                   </div>
                   <button
                     className="cart-page__submit-btn button"
-                    onClick={(e) => {
-                      this.submitOrder()
-                    }}
+                    onClick={this.onSubmitCLick}
                   >
                     Buy
                   </button>

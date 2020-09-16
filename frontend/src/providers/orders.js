@@ -5,7 +5,7 @@ import DataProvider from '../utils/js/data-provider';
 
 export default class OrderProvider extends DataProvider {
   addOrder(productIdsArray) {
-    return axios.post('api/v1/orders/create/', {data: {productIdsArray}})
+    return axios.post('/api/v1/orders/create/', {data: {productIdsArray}})
       .then((response) =>  {
         return response.data;
       })
