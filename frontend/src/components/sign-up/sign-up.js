@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import SimpleReactValidator from 'simple-react-validator';
-import {handleValueChange} from "./../../utils/js/utils";
+import {handleValueChange} from "../../utils/js/utils";
 
 class SignUp extends Component {
   constructor(props) {

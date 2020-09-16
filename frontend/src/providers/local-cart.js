@@ -1,5 +1,3 @@
-import axios from "axios";
-import {NotificationManager} from "react-notifications";
 import DataProvider from '../utils/js/data-provider';
 import {UPDATE_CART} from "../actions/local-cart";
 import {LOCAL_STORAGE_KEYS} from "../utils/js/config";
