@@ -30,6 +30,7 @@ class Login extends Component {
     e.preventDefault();
 
     if (this.validator.allValid()) {
+      // TODO add login request
       console.log('valid');
       this.props.closeModal()
     } else {
