@@ -2,12 +2,16 @@ import React, {Component} from 'react';
 import SimpleReactValidator from 'simple-react-validator';
 import {handleValueChange} from "../../utils/js/utils";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {connect} from "react-redux";
+import UserProvider from "../../providers/user";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      loginEmail: '',
+      loginPassword: '',
       email: '',
       password: '',
       passwordRepeat: '',
@@ -34,9 +38,16 @@ export default class SignIn extends Component {
     e.preventDefault();
 
     if (this.loginValidator.allValid()) {
-      // TODO add request
+      const payload= {
+        username: this.state.loginEmail,
+        password: this.state.loginPassword
+      };
 
-      this.props.closeModal();
+      this.props.userProvider.login(payload)
+        .then((response) => {
+          this.props.closeModal();
+        })
+        .catch(() => {});
       return;
     }
 
@@ -78,9 +89,9 @@ export default class SignIn extends Component {
         <TabPanel>
           <form className="sign-in__form" noValidate>
             <div className="form-item">
-              <label className="form-item__label" htmlFor="email">Email</label>
+              <label className="form-item__label" htmlFor="loginEmail">Email</label>
               <input
-                name="email"
+                name="loginEmail"
                 onChange={(e) => {
                   handleValueChange(this, e.target.name, e.target.value)
                 }}
@@ -91,9 +102,9 @@ export default class SignIn extends Component {
               {this.loginValidator.message('email', loginEmail, 'required|email')}
             </div>
             <div className="form-item">
-              <label className="form-item__label" htmlFor="password">Password</label>
+              <label className="form-item__label" htmlFor="loginPassword">Password</label>
               <input
-                name="password"
+                name="loginPassword"
                 onChange={(e) => {
                   handleValueChange(this, e.target.name, e.target.value)
                 }}
@@ -165,3 +176,10 @@ export default class SignIn extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({}),
+  dispatch => ({
+    userProvider: new UserProvider(dispatch),
+  })
+)(SignIn);
