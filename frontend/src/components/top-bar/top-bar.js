@@ -1,50 +1,32 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import LogIn from './../login/login';
-import SignUp from './../sign-up/sign-up';
+import SignIn from './../sign-in/sign-in';
 import Modal from './../modal/modal';
 import TopBarCart from './../top-bar-cart/top-bar-cart';
-import {
-  Link,
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-// TODO add props description!
-
-class Main extends Component {
+export default class Main extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isLoginModalSeen: false,
-      isSignUpModalSeen: false
+      isSignInModalSeen: false
     };
 
-    this.openLoginModal = this.openLoginModal.bind(this);
-    this.closeLoginModal = this.closeLoginModal.bind(this);
-    this.openSignUpModal = this.openSignUpModal.bind(this);
-    this.closeSignUpModal = this.closeSignUpModal.bind(this);
+    this.openSignInModal = this.openSignInModal.bind(this);
+    this.closeSignInModal = this.closeSignInModal.bind(this);
   }
 
-  openLoginModal() {
-    this.setState({isLoginModalSeen: true});
+  openSignInModal() {
+    this.setState({isSignInModalSeen: true});
   }
 
-  closeLoginModal() {
-    this.setState({isLoginModalSeen: false});
-  }
-
-  openSignUpModal() {
-    this.setState({isSignUpModalSeen: true});
-  }
-
-  closeSignUpModal() {
-    this.setState({isSignUpModalSeen: false});
+  closeSignInModal() {
+    this.setState({isSignInModalSeen: false});
   }
 
   render() {
     const {
-      isLoginModalSeen,
-      isSignUpModalSeen
+      isSignInModalSeen
     } = this.state;
 
     return (
@@ -59,42 +41,23 @@ class Main extends Component {
           <div className="top-bar__right">
             <button
               className="button top-bar__button"
-              onClick={this.openLoginModal}
+              onClick={this.openSignInModal}
             >
-              Login
-            </button>
-
-            <button
-              className="button top-bar__button"
-              onClick={this.openSignUpModal}
-            >
-              Sign up
+              Sign in
             </button>
             <TopBarCart/>
           </div>
         </div>
         </div>
         <Modal
-          isOpen={isLoginModalSeen}
-          closeModal={this.closeLoginModal}
+          isOpen={isSignInModalSeen}
+          closeModal={this.closeSignInModal}
         >
-          <LogIn
-            closeModal={this.closeLoginModal}
-          />
-        </Modal>
-        <Modal
-          isOpen={isSignUpModalSeen}
-          closeModal={this.closeSignUpModal}
-        >
-          <SignUp
-            closeModal={this.closeSignUpModal}
+          <SignIn
+            closeModal={this.closeSignInModal}
           />
         </Modal>
       </div>
     )
   }
 }
-
-export default connect(
-  null
-)(Main);

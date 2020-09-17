@@ -58,9 +58,21 @@ class CartPage extends Component {
       return;
     }
 
-    // TODO
-    console.log('need authorize');
-    // this.showLoginSignUpBlock();
+    this.showInfoSignInModal();
+  }
+
+  showInfoSignInModal = (item) => {
+    confirmAlert({
+      customUI: () => {
+        return (
+          <div className='react-confirm-alert__modal _sign-in-alert'>
+            <div className="react-confirm-alert__modal-text">
+              Please sign in!
+            </div>
+          </div>
+        );
+      }
+    });
   }
 
   showConfirmDeleteOrderItemModal = (item) => {
@@ -158,19 +170,19 @@ class CartPage extends Component {
         }
         {
           orderList && orderList.length ?
-            <div className="cart-page__submit">
+            <div className="cart-page__bottom">
               <div className="container">
-                <div className="cart-page__submit-container">
-                  <div className="cart-page__submit-details">
-                    <div className="cart-page__submit-details-text">
+                <div className="cart-page__bottom-container">
+                  <div className="cart-page__bottom-details">
+                    <div className="cart-page__bottom-details-text">
                       Total price: <b>{this.getTotalPrice()}</b>
                     </div>
-                    <div className="cart-page__submit-details-text">
+                    <div className="cart-page__bottom-details-text">
                       Total quantity: <b>{orderList.length}</b>
                     </div>
                   </div>
                   <button
-                    className="cart-page__submit-btn button"
+                    className="cart-page__bottom-btn button"
                     onClick={this.onSubmitCLick}
                   >
                     Buy

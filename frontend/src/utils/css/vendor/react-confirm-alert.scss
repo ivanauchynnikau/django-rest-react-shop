@@ -13,6 +13,18 @@
     box-shadow: $box-shadow;
     border-radius: $border-radius;
 
+    &._sign-in-alert {
+      min-width: 260px;
+      min-height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .react-confirm-alert__modal-text {
+        margin-bottom: 0;
+      }
+    }
+
     &-text {
       margin-bottom: 25px;
       font-size: 22px;

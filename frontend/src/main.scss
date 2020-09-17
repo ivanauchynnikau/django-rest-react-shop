@@ -4,6 +4,7 @@
 
 @import '~react-notifications/dist/react-notifications.css';
 @import '~react-confirm-alert/src/react-confirm-alert.css';
+@import '~react-tabs/style/react-tabs.css';
 
 @import './utils/css/vendor/react-confirm-alert';
 
@@ -16,9 +17,8 @@
 @import './components/product-list-page/product-list-page';
 @import './components/top-bar/top-bar';
 @import './components/modal/modal';
-@import './components/login/login';
 @import './components/product-page/product-page';
-@import './components/sign-up/sign-up';
+@import './components/sign-in/sign-in';
 @import './components/top-bar-cart/top-bar-cart';
 @import './components/product/product';
 @import './components/cart-page/cart-page';

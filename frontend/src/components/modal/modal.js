@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
 
-class Modal extends Component {
+export default class Modal extends Component {
   constructor(props) {
     super(props);
   }
@@ -30,7 +29,3 @@ class Modal extends Component {
     )
   }
 }
-
-export default connect(
-  null
-)(Modal);
