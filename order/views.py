@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from order.serializers import OrderDetailSerializer, OrderListSerializer
-from order.models import Order, User
+from order.models import Order, MyUser
 from order.permissions import IsOwner
 from rest_framework import viewsets
 
@@ -16,7 +16,7 @@ class OrderCreateView(viewsets.ViewSet):
     def create(self, request):
         product_id_list = request.data['data']['productIdsArray']
 
-        user = User.objects.create(username=datetime.datetime.now())  # create new user
+        user = MyUser.objects.create(username=datetime.datetime.now())  # create new user
         # 0 = ADDED_TO_CART state
         order = Order.objects.create(state=0, user=user)  # save object to db
         order.save()  # save object to db
