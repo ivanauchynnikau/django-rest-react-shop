@@ -15,8 +15,11 @@ from product.models import Product
 class OrderCreateView(viewsets.ViewSet):
     def create(self, request):
         product_id_list = request.data['data']['productIdsArray']
+        user_email = request.data['data']['user_email']
 
-        user = MyUser.objects.create(username=datetime.datetime.now())  # create new user
+        # user = MyUser.objects.create(username=datetime.datetime.now())  # create new user
+        # TODO do we need to find user like this?
+        user = MyUser.objects.filter(email__exact=user_email)  # get user from db
         # 0 = ADDED_TO_CART state
         order = Order.objects.create(state=0, user=user)  # save object to db
         order.save()  # save object to db

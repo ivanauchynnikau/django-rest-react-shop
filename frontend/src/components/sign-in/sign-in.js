@@ -39,16 +39,15 @@ class SignIn extends Component {
     e.preventDefault();
 
     if (this.loginValidator.allValid()) {
-      const payload= {
+      const payload = {
         email: this.state.loginEmail,
         password: this.state.loginPassword
       };
 
       this.props.userProvider.login(payload)
         .then((response) => {
-          // TODO delete console
-          // TODO add notification
-          console.log(response);
+          localStorage.setItem('token', response.auth_token);
+          NotificationManager.success('You are logged in!');
           this.props.closeModal();
         })
         .catch(() => {
@@ -72,9 +71,7 @@ class SignIn extends Component {
 
       this.props.userProvider.signUp(payload)
         .then((response) => {
-          // TODO delete console
-          console.log(response);
-          NotificationManager.success('User was created!');
+          NotificationManager.success('User was created! Please login!');
           this.props.closeModal();
         })
         .catch(() => {
