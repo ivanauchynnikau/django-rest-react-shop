@@ -4,6 +4,7 @@ import {handleValueChange} from "../../utils/js/utils";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {connect} from "react-redux";
 import UserProvider from "../../providers/user";
+import {NotificationManager} from "react-notifications";
 
 class SignIn extends Component {
   constructor(props) {
@@ -59,9 +60,22 @@ class SignIn extends Component {
     e.preventDefault();
 
     if (this.signUpValidator.allValid()) {
-      // TODO add request
+      const payload = {
+        email: this.state.email,
+        password: this.state.password
+      };
 
-      this.props.closeModal();
+      this.props.userProvider.signUp(payload)
+        .then((response) => {
+          // TODO delete console
+          console.log(response);
+          NotificationManager.success('User was created!');
+          this.props.closeModal();
+        })
+        .catch(() => {
+          this.props.closeModal();
+        });
+
       return;
     }
 

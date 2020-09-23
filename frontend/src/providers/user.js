@@ -15,4 +15,19 @@ export default class OrderProvider extends DataProvider {
         return error;
       });
   }
+
+  signUp({email, password}) {
+    return axios.post('/auth/users/', {
+      email: email,
+      password: password
+    })
+      .then((response) =>  {
+        return response;
+      })
+      .catch((error) => {
+        NotificationManager.warning('Something went wrong!');
+        console.error(error);
+        return error;
+      });
+  }
 }
