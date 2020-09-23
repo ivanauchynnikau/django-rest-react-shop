@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from accounts.models import MyUser
 
 
 class Order(models.Model):
@@ -10,7 +9,7 @@ class Order(models.Model):
         (ADDED_TO_CART, 'Added to cart'),
         (FINISHED, 'Finished'),
     )
-    user = models.ForeignKey(User, related_name='user', default=0, on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, related_name='user', default=0, on_delete=models.CASCADE)
     state = models.IntegerField(verbose_name='Order state', choices=STATE)
     comment = models.CharField(verbose_name='Comment', max_length=256)
 

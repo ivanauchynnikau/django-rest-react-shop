@@ -1,7 +1,5 @@
 from django.db import models
 from category.models import Category
-from django.contrib.auth import get_user_model
-User = get_user_model()
 
 
 class Product(models.Model):
@@ -14,7 +12,6 @@ class Product(models.Model):
     in_stock = models.PositiveIntegerField(default=0)
     price = models.DecimalField(verbose_name='Price', default=0,
                                 decimal_places=2, max_digits=8)
-    user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Product"
