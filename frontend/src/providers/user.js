@@ -4,8 +4,11 @@ import DataProvider from '../utils/js/data-provider';
 
 
 export default class OrderProvider extends DataProvider {
-  login({username, password}) {
-    return axios.post('/api/v1/auth/login/', {username, password})
+  login({email, password}) {
+    return axios.post('/auth/token/login/', {
+      email: email,
+      password: password
+    })
       .then((response) =>  {
         return response;
       })

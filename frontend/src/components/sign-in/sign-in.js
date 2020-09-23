@@ -40,15 +40,20 @@ class SignIn extends Component {
 
     if (this.loginValidator.allValid()) {
       const payload= {
-        username: this.state.loginEmail,
+        email: this.state.loginEmail,
         password: this.state.loginPassword
       };
 
       this.props.userProvider.login(payload)
         .then((response) => {
+          // TODO delete console
+          // TODO add notification
+          console.log(response);
           this.props.closeModal();
         })
-        .catch(() => {});
+        .catch(() => {
+          // TODO add notification
+        });
       return;
     }
 
