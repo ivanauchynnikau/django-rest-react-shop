@@ -18,8 +18,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             'description',
             'image',
             'in_stock',
-            'price',
-            'user'
+            'price'
         )
 
 
@@ -33,6 +32,5 @@ class ProductListSerializer(serializers.ModelSerializer):
             'description',
             'image',
             'in_stock',
-            'price',
-            'user'
+            'price'
         )
