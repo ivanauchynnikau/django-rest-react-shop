@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {connect} from "react-redux";
 import UserProvider from "../../providers/user";
 import {NotificationManager} from "react-notifications";
+import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 
 class SignIn extends Component {
   constructor(props) {
@@ -46,13 +47,13 @@ class SignIn extends Component {
 
       this.props.userProvider.login(payload)
         .then((response) => {
-          localStorage.setItem('token', response.auth_token);
-          NotificationManager.success('You are logged in!');
+          const token = response.data.auth_token;
+
+          localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
+          this.props.userProvider.getUser(token);
+
           this.props.closeModal();
         })
-        .catch(() => {
-          // TODO add notification
-        });
       return;
     }
 

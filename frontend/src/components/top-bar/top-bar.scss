@@ -25,9 +25,21 @@
     }
   }
 
+  &__user {
+    display: flex;
+
+    &-email {
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-size: 20px;
+      padding: 12px 15px;
+      color: #fff;
+    }
+  }
+
   &__right {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
   }
 
   &__button {

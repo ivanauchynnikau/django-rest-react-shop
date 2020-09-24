@@ -11,6 +11,7 @@ const store = configureStore(/* provide initial state if any */);
 
 // Project
 import ProductPage from './components/product-page/product-page'
+import InitializingContainer from './components/initializing-container/initializing-container'
 import TopBar from "./components/top-bar/top-bar";
 import Page404 from "./components/page-404/page-404";
 import ProductListPage from "./components/product-list-page/product-list-page";
@@ -20,6 +21,7 @@ ReactDOM.render(
   <div className="app-wrapper">
     <Provider store={store}>
       <ConnectedRouter history={history}> { /* place ConnectedRouter under Provider */}
+        <InitializingContainer/>
         <TopBar/>
         <div className="container">
           <Switch>

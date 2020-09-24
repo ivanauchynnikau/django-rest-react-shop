@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import LocalCart from "./../../providers/local-cart";
 
 
 class TopBarCart extends Component {
@@ -9,16 +8,10 @@ class TopBarCart extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.localCartProvider.getProductsInCart();
-  }
-
   render() {
     const {
       orderList
     } = this.props;
-
-    console.log(orderList);
 
     return (
       <Link
@@ -40,7 +33,5 @@ export default connect(
   state => ({
     orderList: state.localCart.orderList
   }),
-  dispatch => ({
-    localCartProvider: new LocalCart(dispatch),
-  })
+  dispatch => ({})
 )(TopBarCart);

@@ -3,18 +3,37 @@ import SignIn from './../sign-in/sign-in';
 import Modal from './../modal/modal';
 import TopBarCart from './../top-bar-cart/top-bar-cart';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import LocalCart from "../../providers/local-cart";
+import UserProvider from "../../providers/user";
+import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 
-export default class Main extends Component {
+export class TopBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isSignInModalSeen: false
+      isSignInModalSeen: false,
+      user: {}
     };
 
     this.openSignInModal = this.openSignInModal.bind(this);
     this.closeSignInModal = this.closeSignInModal.bind(this);
   }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.user !== state.user) {
+      return {
+        user: props.user,
+      };
+    }
+
+    return null;
+  }
+
+  static defaultProps = {
+    user: {},
+  };
 
   openSignInModal() {
     this.setState({isSignInModalSeen: true});
@@ -24,9 +43,15 @@ export default class Main extends Component {
     this.setState({isSignInModalSeen: false});
   }
 
+  logOut = () => {
+    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+    this.props.userProvider.logOut(token);
+  }
+
   render() {
     const {
-      isSignInModalSeen
+      isSignInModalSeen,
+      user
     } = this.state;
 
     return (
@@ -38,15 +63,30 @@ export default class Main extends Component {
               SHOP
             </Link>
           </div>
-          <div className="top-bar__right">
-            <button
-              className="button top-bar__button"
-              onClick={this.openSignInModal}
-            >
-              Sign in
-            </button>
-            <TopBarCart/>
-          </div>
+            <div className="top-bar__right">
+              {
+                user.isAuthenticated ?
+                <div className="top-bar__user">
+                  <div className="top-bar__user-email">
+                    {user.email}
+                  </div>
+                  <button
+                    className="button top-bar__button"
+                    onClick={this.logOut}
+                  >
+                    Log out
+                  </button>
+                </div>
+                  :
+                <button
+                  className="button top-bar__button"
+                  onClick={this.openSignInModal}
+                >
+                  Sign in
+                </button>
+              }
+              <TopBarCart/>
+            </div>
         </div>
         </div>
         <Modal
@@ -61,3 +101,13 @@ export default class Main extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({
+    user: state.user.user
+  }),
+  dispatch => ({
+    localCartProvider: new LocalCart(dispatch),
+    userProvider: new UserProvider(dispatch),
+  })
+)(TopBar);
