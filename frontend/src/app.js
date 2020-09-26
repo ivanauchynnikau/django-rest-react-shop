@@ -16,6 +16,7 @@ import TopBar from "./components/top-bar/top-bar";
 import Page404 from "./components/page-404/page-404";
 import ProductListPage from "./components/product-list-page/product-list-page";
 import CartPage from "./components/cart-page/cart-page";
+import OrderPage from "./components/order-page/order-page";
 
 ReactDOM.render(
   <div className="app-wrapper">
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Switch>
             <Route exact path="/" render={(props) => <ProductListPage {...props}/>}/>
             <Route exact path="/products/:id/" render={(props) => <ProductPage {...props}/>}/>
+            <Route exact path="/orders/:id/" render={(props) => <OrderPage {...props}/>}/>
             <Route exact path="/cart/" render={(props) => <CartPage {...props}/>}/>
             <Route exact path="" render={() => <Page404/>}/>
           </Switch>

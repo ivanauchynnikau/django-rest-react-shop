@@ -1,13 +1,12 @@
 from django.db import models
 from accounts.models import MyUser
+from order.choices import ORDER_STATUSES
 
 
 class Order(models.Model):
-    ADDED_TO_CART = 0
-    FINISHED = 1
     STATE = (
-        (ADDED_TO_CART, 'Added to cart'),
-        (FINISHED, 'Finished'),
+        (ORDER_STATUSES.STARTED, 'Added to cart'),
+        (ORDER_STATUSES.FINISHED, 'Finished'),
     )
     user = models.ForeignKey(MyUser, related_name='user', default=0, on_delete=models.CASCADE)
     state = models.IntegerField(verbose_name='Order state', choices=STATE)

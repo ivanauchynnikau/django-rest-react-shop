@@ -1,6 +1,7 @@
 import DataProvider from '../utils/js/data-provider';
-import axios from "axios";
-import {GET_PRODUCT_LIST} from "../actions/products";
+import axios from 'axios';
+import {NotificationManager} from 'react-notifications';
+import {GET_PRODUCT_LIST} from '../actions/products';
 
 
 export default class ProductProvider extends DataProvider {

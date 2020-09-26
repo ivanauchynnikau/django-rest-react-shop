@@ -14,4 +14,11 @@ export default class OrderProvider extends DataProvider {
         console.error(error);
       });
   }
+
+  getOrder(orderId) {
+    return axios.get(`/api/v1/orders/${orderId}/`)
+      .then((response) =>  {
+        return response.data;
+      });
+  }
 }
