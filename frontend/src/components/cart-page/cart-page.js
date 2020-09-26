@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {push} from "react-router-redux";
 import uuid from 'react-uuid'
 import LocalCart from "../../providers/local-cart";
 import OrderProvider from "../../providers/orders";
@@ -7,7 +8,6 @@ import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
 import {confirmAlert} from 'react-confirm-alert';
 import {NotificationManager} from 'react-notifications';
-import {IS_AUTHENTICATED} from '../../context';
 
 
 class CartPage extends Component {
@@ -36,11 +36,13 @@ class CartPage extends Component {
     if (!orderList.length) return;
 
     const orderIdsArray = orderList.map((order) => order.id);
+    const email = this.props.user.email;
 
-    this.props.orderProvider.addOrder(orderIdsArray)
+    this.props.orderProvider.addOrder(orderIdsArray, email)
       .then((response) => {
-        console.log(response);
-        NotificationManager.success('Order № ... was created!');
+        this.props.redirectToHomePage();
+        NotificationManager.success(`Order № ${response[0].id} was created!`);
+        this.props.localCartProvider.clearCart();
       });
   }
 
@@ -53,7 +55,7 @@ class CartPage extends Component {
   }
 
   onSubmitCLick = () => {
-    if (IS_AUTHENTICATED) {
+    if (this.props.user && this.props.user.isAuthenticated) {
       this.submitOrder();
       return;
     }
@@ -199,10 +201,12 @@ class CartPage extends Component {
 
 export default connect(
   state => ({
-    orderList: state.localCart.orderList
+    orderList: state.localCart.orderList,
+    user: state.user.user
   }),
   dispatch => ({
     localCartProvider: new LocalCart(dispatch),
     orderProvider: new OrderProvider(dispatch),
+    redirectToHomePage: () => {dispatch(push('/'))},
   })
 )(CartPage);

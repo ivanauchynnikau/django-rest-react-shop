@@ -1,1 +1,1 @@
-export const IS_AUTHENTICATED = window.IS_AUTHENTICATED;
+// export const IS_AUTHENTICATED = window.IS_AUTHENTICATED;

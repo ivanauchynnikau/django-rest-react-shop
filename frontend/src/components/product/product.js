@@ -40,7 +40,6 @@ class Product extends Component {
     };
 
     this.props.localCartProvider.addProductToCart(cartItem);
-    NotificationManager.success(`"${cartItem.title}" added to cart!`);
   }
 
   render() {

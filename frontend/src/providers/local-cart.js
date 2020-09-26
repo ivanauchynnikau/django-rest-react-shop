@@ -44,6 +44,13 @@ export default class LocalCart extends DataProvider {
 
   getProductsInCart () {
     const ordersListJsonString = localStorage.getItem(LOCAL_STORAGE_KEYS.LOCAL_CART);
+    if (!ordersListJsonString) return;
+
     this.dispatch(UPDATE_CART, {data: JSON.parse(ordersListJsonString)});
+  }
+
+  clearCart () {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.LOCAL_CART, JSON.stringify([]));
+    this.dispatch(UPDATE_CART, {data: []});
   }
 }
