@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from product.models import Product
-from category.serializers import CategoryInProductDetail
+from category.serializers import CategoryDetail
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
-    category = CategoryInProductDetail()
+    category = CategoryDetail()
 
     class Meta:
         model = Product
@@ -32,6 +32,8 @@ class ProductDetailInOrderItemSerializer(serializers.ModelSerializer):
 
 
 class ProductListSerializer(serializers.ModelSerializer):
+    category = CategoryDetail()
+
     class Meta:
         model = Product
         fields = (

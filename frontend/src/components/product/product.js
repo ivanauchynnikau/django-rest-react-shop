@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import LocalCart from "../../providers/local-cart";
 import {Link} from "react-router-dom";
 import {CURRENCY} from "../../utils/js/config";
-import {NotificationManager} from 'react-notifications';
 
 
 class Product extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
     customClass: PropTypes.string,
+    orderViewMode: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -45,7 +45,8 @@ class Product extends Component {
   render() {
     const {
       product,
-      customClass
+      customClass,
+      orderViewMode
     } = this.props;
 
     return (
@@ -70,22 +71,29 @@ class Product extends Component {
               <div className="product__description">
                 {product.description}
               </div>
-              <div className="product__in-stock">
-                In stock: {product.in_stock}
-              </div>
+
+              {!orderViewMode ?
+                <div className="product__in-stock">
+                  In stock: {product.in_stock}
+                </div>
+                : null
+              }
               <div className="product__price">
                 {CURRENCY}{product.price}
               </div>
-              <button
-                disabled={!product.in_stock}
-                title={!product.in_stock ? 'Product is unavailable' : ''}
-                className="product__button button"
-                onClick={(e) => {
-                  this.addToCart(e, product)
-                }}
-              >
-                Add to cart
-              </button>
+              {
+                !orderViewMode ?
+                <button
+                  disabled={!product.in_stock}
+                  title={!product.in_stock ? 'Product is unavailable' : ''}
+                  className="product__button button"
+                  onClick={(e) => {
+                    this.addToCart(e, product)
+                  }}
+                >
+                  Add to cart
+                </button> : null
+              }
             </div>
           </div>
         </Link>

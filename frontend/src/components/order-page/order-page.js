@@ -2,13 +2,22 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import OrderProvider from "../../providers/orders";
 import {push} from "react-router-redux";
+import Product from "../product/product";
+import uuid from "react-uuid";
 
 
 class OrderPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      order: {
+        comment: null,
+        state: null,
+        items: []
+      }
+    };
+
     this.orderId = parseInt(props.match.params.id);
   }
 
@@ -22,16 +31,48 @@ class OrderPage extends Component {
       });
   }
 
+  orderStateRenderer = () => {
+    switch(this.state.order.state) {
+      case null:
+        return null
+      case 0:
+        return 'in progress';
+      case 1:
+        return 'finished';
+    }
+  }
+
+  totalPriceRenderer = () => {
+    const totalPrice = this.state.order.items.reduce((sum, item) => sum + (parseFloat(item.item.price)), 0).toFixed(2);
+    return totalPrice
+  }
+
   render() {
     const {
-      product
+      order
     } = this.state;
 
     return (
       <div className="order-page">
-        <div className="order-page__img">
-          123
-          {product}
+        <div className="order-page__status">
+          Order status: {this.orderStateRenderer()}
+        </div>
+        <div className="order-page__total">
+          Total order price: {this.totalPriceRenderer()}
+        </div>
+        <div className="order-page__product-title">
+          Products:
+        </div>
+        <div className="order-page__product-list">
+          {order.items.map(item => (
+            <div className="order-page__product-item">
+              <Product
+                orderViewMode={true}
+                key={uuid()}
+                product={item.item}
+              />
+            </div>
+          ))}
         </div>
       </div>
     );
