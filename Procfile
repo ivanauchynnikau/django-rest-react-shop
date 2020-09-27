@@ -1,1 +1,1 @@
-python-3.6.1
+web: gunicorn djangoRestReactShop.wsgi --log-file -
