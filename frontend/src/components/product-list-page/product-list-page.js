@@ -7,18 +7,26 @@ import Select from 'react-select';
 
 
 class ProductListPage extends Component {
-  static defaultProps = {
-    productList: [],
-    selectedSorting: 'default',
-    sortingOptions: [
-      { value: 'default', label: 'Default sorting' },
-      { value: 'lowPrice', label: 'Low price' },
-      { value: 'highPrice', label: 'High price' },
-    ],
-  };
-
   constructor(props) {
     super(props);
+    this.state = {
+      productList: props.productList,
+      selectedSorting: null,
+      sortingOptions: [
+        { value: 'lowPrice', label: 'Low price' },
+        { value: 'highPrice', label: 'High price' },
+      ],
+    }
+  }
+
+  static defaultProps = {
+    productList: [],
+  };
+
+  static getDerivedStateFromProps(props) {
+    return {
+      productList: props.productList,
+    };
   }
 
   componentDidMount() {
@@ -28,27 +36,29 @@ class ProductListPage extends Component {
   onSortingChange = selectedOption => {
     this.setState({ selectedOption });
 
-    switch(selectedOption) {
-      case 'lowPrice':
+    const {
+      productList
+    } = this.state;
 
+    switch(selectedOption.value) {
+      case 'lowPrice':
+        productList.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
         break;
 
       case 'highPrice':
-
-        break;
-
-      default:
-
+        productList.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
         break;
     }
+
+    this.setState({productList});
   };
 
   render() {
     const {
-      productList,
       sortingOptions,
-      selectedOption
-    } = this.props;
+      selectedOption,
+      productList
+    } = this.state;
 
     return (
       <div className="product-list-page">
@@ -58,6 +68,8 @@ class ProductListPage extends Component {
               value={selectedOption}
               onChange={this.onSortingChange}
               options={sortingOptions}
+              isSearchable={false}
+              placeholder="Change sorting"
             />
           </div>
         </div>
