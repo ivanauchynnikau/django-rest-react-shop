@@ -53,3 +53,6 @@ Thumbs.db
 node_modules/
 frontend/static/build/
 !frontend/static/.gitkeeper
+
+# DB
+*.sqllite
