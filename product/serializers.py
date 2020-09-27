@@ -21,6 +21,19 @@ class ProductDetailSerializer(serializers.ModelSerializer):
         )
 
 
+class ProductDetailInOrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = (
+            'id',
+            'title',
+            'description',
+            'image',
+            'in_stock',
+            'price'
+        )
+
+
 class ProductListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product

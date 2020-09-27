@@ -24,15 +24,12 @@ class OrderCreateView(viewsets.ViewSet):
 
         for product_id in product_id_list:
             product = Product.objects.get(id=product_id)  # get product by product id
-            order_item = OrderItem.objects.create(item=product, order=order)  # create order item
+            order_item = OrderItem.objects.create(item=product, order=order, amount=1, price=product.price)
             order_item.save()  # save order items to db
 
         order = Order.objects.filter(id=order.id)
         order = order.values()
 
-        # get user data that related to product my manyToMany connection
-        # reformat django queryset and to json will returns {user_id: 1, user_id: 2, ...}
-        # order_item_list_json = order_item_list.values('order__user_id')
         return Response(status=200, data=order)
 
 
