@@ -1,12 +1,10 @@
 from rest_framework import serializers
 from product.models import Product
+from category.serializers import CategoryInProductDetail
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
-    category = serializers.SerializerMethodField()
-
-    def get_category(self, obj):
-        return obj.title
+    category = CategoryInProductDetail()
 
     class Meta:
         model = Product
@@ -29,7 +27,6 @@ class ProductDetailInOrderItemSerializer(serializers.ModelSerializer):
             'title',
             'description',
             'image',
-            'in_stock',
             'price'
         )
 
