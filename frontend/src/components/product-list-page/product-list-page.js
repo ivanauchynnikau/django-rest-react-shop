@@ -11,7 +11,7 @@ class ProductListPage extends Component {
     super(props);
     this.state = {
       productList: props.productList,
-      selectedSorting: null,
+      selectedOption: null,
       sortingOptions: [
         { value: 'lowPrice', label: 'Low price' },
         { value: 'highPrice', label: 'High price' },
