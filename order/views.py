@@ -17,6 +17,7 @@ from djangoRestReactShop.settings import EMAIL_HOST_USER
 def send_email(recipient_mail, order_id, product_list):
     message = ''
     for product in product_list:
+        message += f'<a href="http://placekitten.com/g/800/800" target="_blank" style="font-size: 30px;">MYSHOP.COM</a>'
         message += f'<p style="font-size: 22px;">{ product["title"] }</p>'
         # TODO how show images in mails?
         # message += f'<div><img src="{ product["image"] }"></div>'
