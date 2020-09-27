@@ -15,7 +15,7 @@ class CartPage extends Component {
     super(props);
 
     this.state = {
-      orderList: props.orderList
+      orderList: props.orderList,
     }
   }
 
@@ -40,8 +40,10 @@ class CartPage extends Component {
 
     this.props.orderProvider.addOrder(orderIdsArray, email)
       .then((response) => {
-        this.props.redirectToHomePage();
-        NotificationManager.success(`Order № ${response[0].id} was created!`);
+        const orderId = response[0].id;
+        
+        this.props.redirectToOrderPage(orderId);
+        NotificationManager.success(`Order № ${orderId} was created!`);
         this.props.localCartProvider.clearCart();
       });
   }
@@ -207,6 +209,6 @@ export default connect(
   dispatch => ({
     localCartProvider: new LocalCart(dispatch),
     orderProvider: new OrderProvider(dispatch),
-    redirectToHomePage: () => {dispatch(push('/'))},
+    redirectToOrderPage: (orderId) => {dispatch(push(`/orders/${orderId}`))},
   })
 )(CartPage);
