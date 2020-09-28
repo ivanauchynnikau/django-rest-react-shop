@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './frontend/static/build'),
     filename: 'app.js',
-    publicPath: './../static'
+    publicPath: './static'
   },
   resolve: {
     extensions: ['.js', '.jsx']
