@@ -36,10 +36,7 @@ to install `pyenv`. After installing, run this:
 
 ### 9. Build frontend
 
-###for development
     npm run dev
-
-###for production
     npm run build
 
 ### 10. Run server
