@@ -51,7 +51,7 @@ Thumbs.db
 # Front-end
 #########################
 node_modules/
-#frontend/static/build/
+frontend/static/build/
 !frontend/static/.gitkeeper
 
 # DB
