@@ -19,8 +19,7 @@ def send_email(recipient_mail, order_id, product_list):
     for product in product_list:
         message += f'<a href="http://placekitten.com/g/800/800" target="_blank" style="font-size: 30px;">MYSHOP.COM</a>'
         message += f'<p style="font-size: 22px;">{ product["title"] }</p>'
-        # TODO how show images in mails?
-        # message += f'<div><img src="{ product["image"] }"></div>'
+        message += f'<div><img src="{ product["image"] }"></div>'
         message += f'<p>Description: { product["description"] }</p>'
         message += f'<p style="font-size: 18px;">Price: { product["price"] }</p>'
         message += f'<br><hr><br>'
