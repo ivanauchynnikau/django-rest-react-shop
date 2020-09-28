@@ -5,7 +5,6 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.dev.js",
-    "heroku-postbuild": "build"
   },
   "heroku-run-build-script": true,
   "keywords": [],
