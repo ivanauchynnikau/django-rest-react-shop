@@ -43,6 +43,12 @@ class OrderCreateView(viewsets.ViewSet):
 
         for product_id in product_id_list:
             product = Product.objects.get(id=product_id)
+
+            # reduce num in_stock for product
+            update_in_stock = product.in_stock - 1
+            product.in_stock = update_in_stock
+            product.save()
+
             order_item = OrderItem.objects.create(item=product, order=order, amount=1, price=product.price)
             order_item.save()
 
