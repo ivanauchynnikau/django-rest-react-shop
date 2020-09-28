@@ -6,10 +6,10 @@ const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 module.exports = {
   entry: [
     'babel-polyfill',
-    './src/app.js'
+    './frontend/src/app.js'
   ],
   output: {
-    path: path.resolve(__dirname, './static/build'),
+    path: path.resolve(__dirname, './frontend/static/build'),
     filename: 'app.js',
     publicPath: './../static'
   },
@@ -35,7 +35,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'public/img/[name].[ext]',
-            outputPath: 'static/img/'
+            outputPath: 'frontend/static/img/'
           }
         }
       },
