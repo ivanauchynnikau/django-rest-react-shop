@@ -22,6 +22,8 @@ import OrderPage from "./components/order-page/order-page";
 console.log(23123123);
 console.log(23123123);
 console.log(23123123);
+console.log(23123123);
+console.log(23123123);
 
 ReactDOM.render(
   <div className="app-wrapper">
