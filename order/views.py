@@ -44,26 +44,30 @@ class OrderCreateView(viewsets.ViewSet):
         for product_id in product_id_list:
             product = Product.objects.get(id=product_id)
 
-            # reduce num in_stock for product
-            update_in_stock = product.in_stock - 1
-            product.in_stock = update_in_stock
-            product.save()
+            # prevent create orderItem if there is no available such products in stock
+            if product.in_stock > 0:
+                order_item = OrderItem.objects.create(item=product, order=order, amount=1, price=product.price)
+                order_item.save()
 
-            order_item = OrderItem.objects.create(item=product, order=order, amount=1, price=product.price)
-            order_item.save()
+                product_dict = {
+                    'title': product.title,
+                    'image': product.image,
+                    'description': product.description,
+                    'price': product.price
+                }
+                product_list.append(product_dict)
 
-            product_dict = {
-                'title': product.title,
-                'image': product.image,
-                'description': product.description,
-                'price': product.price
-            }
-            product_list.append(product_dict)
+                # reduce num in_stock for product
+                update_in_stock = product.in_stock - 1
+                product.in_stock = update_in_stock
+                product.save()
+
         send_email(user_email, order.id, product_list)
 
         order = Order.objects.filter(id=order.id)
         order = order.values()
 
+        # TODO return message if one of product is not added to order
         return Response(status=200, data=order)
 
 
