@@ -47,6 +47,12 @@ Thumbs.db
 .env
 .env.*
 !.env.local
+!.env.test
+/static/*
+!/static/.gitkeeper
+/media/*
+!/media/.gitkeeper
+!/media/files/.gitkeeper
 
 # Front-end
 #########################
