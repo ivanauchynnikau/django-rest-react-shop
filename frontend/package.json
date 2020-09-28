@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prod": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.dev.js",
-    "heroku-postbuild": "prod"
   },
   "keywords": [],
   "author": "",
