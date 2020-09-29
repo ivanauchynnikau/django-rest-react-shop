@@ -8,6 +8,12 @@ import LocalCart from "../../providers/local-cart";
 import UserProvider from "../../providers/user";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 
+
+// TODO delete test
+import axios from 'axios';
+import {NotificationManager} from "react-notifications";
+
+
 export class TopBar extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +54,25 @@ export class TopBar extends Component {
     this.props.userProvider.logOut(token);
   }
 
+
+  // TODO delete test
+  test = () => {
+    axios.post('/api/v1/accounts/sign-up/', {
+      // email: `ivanauchynnikau+${(Math.random()*1000).toString().slice(0, 3)}@gmail.com`,
+      email: `admin@admin.admin`,
+      password: 'qweqwe123'
+    })
+      .then((response) =>  {
+        console.log(response);
+        return response;
+      })
+      .catch((error) => {
+        NotificationManager.error("User with this email already exists");
+        return error;
+      });
+  }
+
+
   render() {
     const {
       isSignInModalSeen,
@@ -64,6 +89,10 @@ export class TopBar extends Component {
             </Link>
           </div>
             <div className="top-bar__right">
+
+              {/* TODO delete TEST */}
+              <button onClick={this.test}>TEST SIGN UP</button>
+
               {
                 user.isAuthenticated ?
                 <div className="top-bar__user">
