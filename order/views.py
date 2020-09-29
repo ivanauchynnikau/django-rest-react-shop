@@ -11,13 +11,13 @@ from product.models import Product
 from order.choices import ORDER_STATUSES
 
 from django.core.mail import EmailMultiAlternatives
-from djangoRestReactShop.settings import EMAIL_HOST_USER
+from djangoRestReactShop.settings import EMAIL_HOST_USER, BASE_WEBSITE_URL
 
 
 def send_email(recipient_mail, order_id, product_list):
     message = ''
     for product in product_list:
-        message += f'<a href="http://placekitten.com/g/800/800" target="_blank" style="font-size: 30px;">MYSHOP.COM</a>'
+        message += f'<a href="{BASE_WEBSITE_URL}" target="_blank" style="font-size: 30px;">DJANGOSHOP.COM</a>'
         message += f'<p style="font-size: 22px;">{ product["title"] }</p>'
         message += f'<div><img src="{ product["image"] }"></div>'
         message += f'<p>Description: { product["description"] }</p>'
