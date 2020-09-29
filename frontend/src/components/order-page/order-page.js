@@ -65,10 +65,11 @@ class OrderPage extends Component {
         </div>
         <div className="order-page__product-list">
           {order.items.map(item => (
-            <div className="order-page__product-item">
+            <div className="order-page__product-item"
+                 key={uuid()}
+            >
               <Product
                 orderViewMode={true}
-                key={uuid()}
                 product={item.item}
               />
             </div>

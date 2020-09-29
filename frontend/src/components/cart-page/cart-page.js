@@ -8,6 +8,7 @@ import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
 import {confirmAlert} from 'react-confirm-alert';
 import {NotificationManager} from 'react-notifications';
+import {Loader} from '../loader/loader';
 
 
 class CartPage extends Component {
@@ -16,6 +17,7 @@ class CartPage extends Component {
 
     this.state = {
       orderList: props.orderList,
+      isLoading: false,
     }
   }
 
@@ -23,8 +25,8 @@ class CartPage extends Component {
     orderList: [],
   };
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({orderList: nextProps.orderList});
+  static getDerivedStateFromProps(props) {
+    return {orderList: props.orderList};
   }
 
   submitOrder = () => {
@@ -38,13 +40,17 @@ class CartPage extends Component {
     const orderIdsArray = orderList.map((order) => order.id);
     const email = this.props.user.email;
 
+    this.setState({isLoading: true});
+
     this.props.orderProvider.addOrder(orderIdsArray, email)
       .then((response) => {
         const orderId = response[0].id;
-        
-        this.props.redirectToOrderPage(orderId);
-        NotificationManager.success(`Order № ${orderId} was created!`);
+
         this.props.localCartProvider.clearCart();
+        NotificationManager.success(`Order № ${orderId} was created!`);
+        this.setState({isLoading: false});
+
+        this.props.redirectToOrderPage(orderId);
       });
   }
 
@@ -119,7 +125,8 @@ class CartPage extends Component {
 
   render() {
     const {
-      orderList
+      orderList,
+      isLoading
     } = this.state;
 
     return (
@@ -196,6 +203,7 @@ class CartPage extends Component {
             </div>
             : null
         }
+        <Loader isSeen={isLoading}/>
       </div>
     );
   }
