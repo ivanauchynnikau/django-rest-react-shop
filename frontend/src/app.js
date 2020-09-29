@@ -18,9 +18,6 @@ import ProductListPage from "./components/product-list-page/product-list-page";
 import CartPage from "./components/cart-page/cart-page";
 import OrderPage from "./components/order-page/order-page";
 
-// some test changes
-console.log(23123123);
-
 ReactDOM.render(
   <div className="app-wrapper">
     <Provider store={store}>
