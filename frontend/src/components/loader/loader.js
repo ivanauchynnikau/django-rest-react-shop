@@ -1,22 +1,25 @@
 import React, {Component} from 'react';
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
-export class Loader extends Component {
+
+class Loader extends Component {
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    isLoading: false,
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {}
   }
 
-  static defaultProps = {
-    isSeen: false,
-  };
-
   render() {
-    const {
-      isSeen
-    } = this.props;
-
-    if (!isSeen) return null;
+    if (!this.props.isLoading) return null;
 
     return (
       <div className="lds-ellipsis__wrapper">
@@ -27,3 +30,10 @@ export class Loader extends Component {
     );
   }
 }
+
+export default connect(
+  state => ({
+    isLoading: state.loading.isLoading
+  }),
+  dispatch => ({})
+)(Loader);

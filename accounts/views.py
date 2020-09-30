@@ -2,12 +2,13 @@ from rest_framework.response import Response
 from accounts.models import MyUser
 from accounts.emailer import send_email
 from rest_framework import viewsets
+from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 
 
 # create user, set its token, send sign up email
-class UserCreateView(viewsets.ViewSet):
-    def create(self, request):
+class UserSignUpView(viewsets.ViewSet):
+    def sign_up(self, request):
         email = request.data['email']
         password = request.data['password']
 
@@ -24,3 +25,30 @@ class UserCreateView(viewsets.ViewSet):
         send_email(email, password)
 
         return Response(status=200, data={"auth_token": token.key})
+
+
+class UserLoginView(viewsets.ViewSet):
+    def login(self, request):
+        email = request.data['email']
+        password = request.data['password']
+
+        user = authenticate(password=password, email=email)
+        token = Token.objects.get(user=user)
+
+        if user is not None:
+            return Response(status=200, data={"auth_token": token.key})
+        else:
+            return Response(status=400, data={'error_text': 'Email or password is invalid'})
+
+
+class UserDetailsView(viewsets.ViewSet):
+    def get_user(self, request):
+        try:
+            user = Token.objects.get(key=request.auth.key).user
+        except Token.DoesNotExist:
+            return Response(status=400, data={'error_text': 'User does not exists'})
+
+        if user is not None:
+            return Response(status=200, data={"email": user.email, "id": user.id})
+        else:
+            return Response(status=400, data={'error_text': 'User does not exists'})

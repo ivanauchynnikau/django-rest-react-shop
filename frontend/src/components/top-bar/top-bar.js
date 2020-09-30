@@ -6,12 +6,6 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import LocalCart from "../../providers/local-cart";
 import UserProvider from "../../providers/user";
-import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
-
-
-// TODO delete test
-import axios from 'axios';
-import {NotificationManager} from "react-notifications";
 
 
 export class TopBar extends Component {
@@ -50,28 +44,8 @@ export class TopBar extends Component {
   }
 
   logOut = () => {
-    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
-    this.props.userProvider.logOut(token);
+    this.props.userProvider.logOut();
   }
-
-
-  // TODO delete test
-  test = () => {
-    axios.post('/api/v1/accounts/sign-up/', {
-      // email: `ivanauchynnikau+${(Math.random()*1000).toString().slice(0, 3)}@gmail.com`,
-      email: `admin@admin.admin`,
-      password: 'qweqwe123'
-    })
-      .then((response) =>  {
-        return response;
-      })
-      .catch((error) => {
-        // TODO add ability to get error via error.error_text
-        NotificationManager.error(error.response.data.error_text);
-        return error;
-      });
-  }
-
 
   render() {
     const {
@@ -89,10 +63,6 @@ export class TopBar extends Component {
             </Link>
           </div>
             <div className="top-bar__right">
-
-              {/* TODO delete TEST */}
-              <button onClick={this.test}>TEST SIGN UP</button>
-
               {
                 user.isAuthenticated ?
                 <div className="top-bar__user">

@@ -8,7 +8,6 @@ import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
 import {confirmAlert} from 'react-confirm-alert';
 import {NotificationManager} from 'react-notifications';
-import {Loader} from '../loader/loader';
 
 
 class CartPage extends Component {
@@ -17,7 +16,6 @@ class CartPage extends Component {
 
     this.state = {
       orderList: props.orderList,
-      isLoading: false,
     }
   }
 
@@ -203,7 +201,6 @@ class CartPage extends Component {
             </div>
             : null
         }
-        <Loader isSeen={isLoading}/>
       </div>
     );
   }
