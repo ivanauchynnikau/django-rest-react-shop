@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import LocalCart from "../../providers/local-cart";
 import UserProvider from "../../providers/user";
-import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
+
 
 export class TopBar extends Component {
   constructor(props) {
@@ -44,8 +44,7 @@ export class TopBar extends Component {
   }
 
   logOut = () => {
-    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
-    this.props.userProvider.logOut(token);
+    this.props.userProvider.logOut();
   }
 
   render() {

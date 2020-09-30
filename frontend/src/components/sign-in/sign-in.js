@@ -50,9 +50,17 @@ class SignIn extends Component {
           const token = response.data.auth_token;
 
           localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
-          this.props.userProvider.getUser(token);
-
-          this.props.closeModal();
+          this.props.userProvider.getUser(token)
+            .then(() => {
+              this.props.closeModal();
+            })
+            .catch((error) => {
+              NotificationManager.warning('Something went wrong! please contact us!');
+            });
+        })
+        .catch((error) => {
+          // TODO add ability to get error via error.error_text
+          NotificationManager.error(error.response.data.error_text);
         })
       return;
     }
@@ -72,11 +80,15 @@ class SignIn extends Component {
 
       this.props.userProvider.signUp(payload)
         .then((response) => {
-          NotificationManager.success('User was created! Please login!');
+          const token = response.data.auth_token;
+
+          localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
+          this.props.userProvider.getUser(token);
           this.props.closeModal();
         })
-        .catch(() => {
-          this.props.closeModal();
+        .catch((error) => {
+          // TODO add ability to get error via error.error_text
+          NotificationManager.error(error.response.data.error_text);
         });
 
       return;

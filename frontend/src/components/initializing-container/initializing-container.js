@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 import UserProvider from "../../providers/user";
 import LocalCart from "../../providers/local-cart";
+import Loader from "../loader/loader";
 
 
 class InitializingContainer extends Component {
@@ -22,13 +23,14 @@ class InitializingContainer extends Component {
   }
 
   render() {
-    return null;
+    return <Loader isLoading={this.props.isLoading}/>
   }
 }
 
 export default connect(
   state => ({
-    user: state.user.user
+    user: state.user.user,
+    isLoading: state.loading
   }),
   dispatch => ({
     userProvider: new UserProvider(dispatch),
