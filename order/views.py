@@ -4,31 +4,12 @@ from rest_framework.response import Response
 from order.serializers import OrderDetailSerializer, OrderListSerializer
 from order.models import Order, MyUser
 from order.permissions import IsOwner
+from order.emailer import send_email
 from rest_framework import viewsets
 
 from orderItem.models import OrderItem
 from product.models import Product
 from order.choices import ORDER_STATUSES
-
-from django.core.mail import EmailMultiAlternatives
-from djangoRestReactShop.settings import EMAIL_HOST_USER, BASE_WEBSITE_URL
-
-
-def send_email(recipient_mail, order_id, product_list):
-    message = ''
-    for product in product_list:
-        message += f'<a href="{BASE_WEBSITE_URL}" target="_blank" style="font-size: 30px;">DJANGOSHOP.COM</a>'
-        message += f'<p style="font-size: 22px;">{ product["title"] }</p>'
-        message += f'<div><img src="{ product["image"] }"></div>'
-        message += f'<p>Description: { product["description"] }</p>'
-        message += f'<p style="font-size: 18px;">Price: { product["price"] }</p>'
-        message += f'<br><hr><br>'
-
-    subject = 'Order №{} was created.'.format(order_id)
-
-    msg = EmailMultiAlternatives(subject, subject, EMAIL_HOST_USER, [recipient_mail])
-    msg.attach_alternative(message, "text/html")
-    msg.send()
 
 
 class OrderCreateView(viewsets.ViewSet):
@@ -67,7 +48,7 @@ class OrderCreateView(viewsets.ViewSet):
         order = Order.objects.filter(id=order.id)
         order = order.values()
 
-        # TODO return message if one of product is not added to order
+        # TODO return error if one of product is not added to order
         return Response(status=200, data=order)
 
 

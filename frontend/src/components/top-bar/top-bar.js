@@ -63,11 +63,11 @@ export class TopBar extends Component {
       password: 'qweqwe123'
     })
       .then((response) =>  {
-        console.log(response);
         return response;
       })
       .catch((error) => {
-        NotificationManager.error("User with this email already exists");
+        // TODO add ability to get error via error.error_text
+        NotificationManager.error(error.response.data.error_text);
         return error;
       });
   }
