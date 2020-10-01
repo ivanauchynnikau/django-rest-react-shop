@@ -143,15 +143,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, os.getenv("MEDIA_FOLDER"))
+STATIC_ROOT = os.path.join(BASE_DIR, os.getenv("STATIC_FOLDER"))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-BASE_WEBSITE_URL = os.getenv('BASE_WEBSITE_URL')
 
-# Email settings
+# Send email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_USE_TLS = True
@@ -159,16 +158,21 @@ EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
+
+# settings for Heroku
 if os.getcwd() == '/app':
     import dj_database_url
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
-    #Honor the 'X-forwarded-Proto' header for request.is_secure().
+    # Honor the 'X-forwarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    #Allow all host headers
+    # Allow all host headers
     ALLOWED_HOSTS = ['django-rest-react-shop.herokuapp.com']
     DEBUG = True
 
-    #Static asset configuration
+    # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+BASE_WEBSITE_URL = os.getenv('BASE_WEBSITE_URL')
