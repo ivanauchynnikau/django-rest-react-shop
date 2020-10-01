@@ -61,5 +61,5 @@ node_modules/
 !frontend/static/.gitkeeper
 
 # DB
-*.sqllite3
+
 
