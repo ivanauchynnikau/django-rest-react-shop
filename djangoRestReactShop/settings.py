@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'product',
     'category',
-    'djoser',
     'frontend',
     'order',
     'accounts',
