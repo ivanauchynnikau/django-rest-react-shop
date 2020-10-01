@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "dev": "webpack --config webpack.dev.js"
+    "prod": "webpack --config webpack.prod.js",
+    "dev": "webpack --config webpack.dev.js",
+    "heroku-postbuild": "webpack --config webpack.prod.js"
   },
   "heroku-run-build-script": true,
   "keywords": [],
@@ -24,6 +25,7 @@
     "css-loader": "3.4.2",
     "mini-css-extract-plugin": "0.11.1",
     "node-sass": "4.13.1",
+    "optimize-css-assets-webpack-plugin": "5.0.4",
     "progress-bar-webpack-plugin": "2.1.0",
     "prop-types": "15.7.2",
     "react": "16.10.2",
@@ -41,6 +43,8 @@
     "@material-ui/icons": "4.5.1",
     "axios": "0.19.0",
     "babel-polyfill": "6.26.0",
+    "browserslist": "4.14.5",
+    "caniuse-lite": "1.0.30001141",
     "classnames": "2.2.6",
     "connected-react-router": "6.8.0",
     "create-react-class": "15.6.3",

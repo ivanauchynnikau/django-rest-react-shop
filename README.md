@@ -37,7 +37,7 @@ to install `pyenv`. After installing, run this:
 ### 9. Build frontend
 
     npm run dev
-    npm run build
+    npm run prod
 
 ### 10. Run server
     python manage.py runserver 0:8080

@@ -20,9 +20,6 @@ class ProductPage extends Component {
       .then((product) => {
         this.setState({product})
       })
-      .catch((error) => {
-        console.log('get product error', error);
-      });
   }
 
   render() {

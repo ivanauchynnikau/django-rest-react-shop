@@ -31,7 +31,7 @@ export default class ProductProvider extends DataProvider {
         return response.data;
       })
       .catch((error) => {
-        return error;
+        NotificationManager.warning('Something went wrong! please contact us!');
       })
       .finally(() => {
         this.dispatch(END_LOADING);
