@@ -48,8 +48,6 @@ Thumbs.db
 .env.*
 !.env.local
 !.env.test
-/static/*
-!/static/.gitkeeper
 /media/*
 !/media/.gitkeeper
 !/media/files/.gitkeeper
