@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 console.log('some test changes');
+console.log('some test changes');
 
 module.exports = {
   entry: [
