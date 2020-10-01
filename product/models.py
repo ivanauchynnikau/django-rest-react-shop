@@ -6,7 +6,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products',
                                  default=0, on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Title', max_length=64)
-    image = models.ImageField(verbose_name='Image', upload_to='static/images',
+    image = models.ImageField(verbose_name='Image', upload_to='images',
                               blank=True, max_length=64)
     description = models.CharField(verbose_name='Description', max_length=256)
     in_stock = models.PositiveIntegerField(default=0)

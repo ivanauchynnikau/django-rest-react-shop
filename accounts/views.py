@@ -6,8 +6,8 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 
 
-# create user, set its token, send sign up email
 class UserSignUpView(viewsets.ViewSet):
+    """ create user, set its token, send sign up email """
     def sign_up(self, request):
         email = request.data['email']
         password = request.data['password']
