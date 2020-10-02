@@ -1,9 +1,10 @@
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from accounts.serializers import LoginSerializer
 from accounts.models import MyUser
 from accounts.emailer import send_email
-from rest_framework import viewsets
-from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
 
 
 class UserSignUpView(viewsets.ViewSet):
@@ -27,18 +28,19 @@ class UserSignUpView(viewsets.ViewSet):
         return Response(status=200, data={"auth_token": token.key})
 
 
-class UserLoginView(viewsets.ViewSet):
-    def login(self, request):
-        email = request.data['email']
-        password = request.data['password']
+class LoginAPIView(APIView):
+    serializer_class = LoginSerializer
 
-        user = authenticate(password=password, email=email)
-        token = Token.objects.get(user=user)
+    def post(self, request):
+        """
+        Checks is user exists.
+        Email and password are required.
+        Returns a JSON web token.
+        """
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        if user is not None:
-            return Response(status=200, data={"auth_token": token.key})
-        else:
-            return Response(status=400, data={'error_text': 'Email or password is invalid'})
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserDetailsView(viewsets.ViewSet):

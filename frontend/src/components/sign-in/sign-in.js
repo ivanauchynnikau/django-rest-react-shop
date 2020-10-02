@@ -4,6 +4,7 @@ import {handleValueChange} from "../../utils/js/utils";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {connect} from "react-redux";
 import UserProvider from "../../providers/user";
+import {getError} from "../../utils/js/utils";
 import {NotificationManager} from "react-notifications";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 
@@ -55,12 +56,11 @@ class SignIn extends Component {
               this.props.closeModal();
             })
             .catch((error) => {
-              NotificationManager.warning('Something went wrong! please contact us!');
+              NotificationManager.error(getError(error));
             });
         })
         .catch((error) => {
-          // TODO add ability to get error via error.error_text
-          NotificationManager.error(error.response.data.error_text);
+          NotificationManager.error(getError(error));
         })
       return;
     }
