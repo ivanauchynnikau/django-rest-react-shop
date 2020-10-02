@@ -11,6 +11,16 @@ export default class UserProvider extends DataProvider {
 
     return axios.post('/api/v1/accounts/login/', {email, password})
       .then((response) =>  {
+        const token = response.data.auth_token;
+        localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
+
+        const data = {
+          email: response.data.email,
+          id: response.data.id,
+          isAuthenticated: true
+        };
+        this.dispatch(SET_USER, {data});
+
         return response;
       })
       .finally(() => {
@@ -23,6 +33,16 @@ export default class UserProvider extends DataProvider {
 
     return axios.post('/api/v1/accounts/sign-up/', {email, password})
       .then((response) =>  {
+        const token = response.data.auth_token;
+        localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
+
+        const data = {
+          email: response.data.email,
+          id: response.data.id,
+          isAuthenticated: true
+        };
+        this.dispatch(SET_USER, {data});
+
         return response;
       })
       .finally(() => {

@@ -15,6 +15,8 @@ export const getError = (error) => {
   if (!error.response) return errorText;
   if (!error.response.data) return errorText;
 
+  if (error.response.data.error) return error.response.data.error;
+
   const keysArray = Object.keys(error.response.data);
 
   if (!keysArray) return errorText;

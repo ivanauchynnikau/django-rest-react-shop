@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import UserProvider from "../../providers/user";
 import {getError} from "../../utils/js/utils";
 import {NotificationManager} from "react-notifications";
-import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
+
 
 class SignIn extends Component {
   constructor(props) {
@@ -47,17 +47,8 @@ class SignIn extends Component {
       };
 
       this.props.userProvider.login(payload)
-        .then((response) => {
-          const token = response.data.auth_token;
-
-          localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
-          this.props.userProvider.getUser(token)
-            .then(() => {
-              this.props.closeModal();
-            })
-            .catch((error) => {
-              NotificationManager.error(getError(error));
-            });
+        .then(() => {
+          this.props.closeModal();
         })
         .catch((error) => {
           NotificationManager.error(getError(error));
@@ -79,16 +70,11 @@ class SignIn extends Component {
       };
 
       this.props.userProvider.signUp(payload)
-        .then((response) => {
-          const token = response.data.auth_token;
-
-          localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
-          this.props.userProvider.getUser(token);
+        .then(() => {
           this.props.closeModal();
         })
         .catch((error) => {
-          // TODO add ability to get error via error.error_text
-          NotificationManager.error(error.response.data.error_text);
+          NotificationManager.error(getError(error));
         });
 
       return;

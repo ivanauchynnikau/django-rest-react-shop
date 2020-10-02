@@ -1,31 +1,46 @@
 from rest_framework import viewsets, status
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.authtoken.models import Token
-from accounts.serializers import LoginSerializer
-from accounts.models import MyUser
+from .serializers import LoginSerializer
+from .models import MyUser
+from .serializers import RegistrationSerializer
 from accounts.emailer import send_email
 
 
-class UserSignUpView(viewsets.ViewSet):
-    """ create user, set its token, send sign up email """
-    def sign_up(self, request):
-        email = request.data['email']
-        password = request.data['password']
+class RegistrationAPIView(APIView):
+    """
+    Registers a new user.
+    """
+    serializer_class = RegistrationSerializer
+
+    def post(self, request):
+        """
+        Creates a new User object.
+        Username, email, and password are required.
+        Returns a JSON web token.
+        """
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        email = serializer.validated_data['email']
+        password = serializer.validated_data['password']
 
         existing_user = MyUser.objects.filter(email__exact=email).first()
         if existing_user:
-            return Response(status=400, data={'error_text': 'User with this email is already registered'})
+            return Response({'error': 'User with this email is already registered'}, status=status.HTTP_400_BAD_REQUEST)
 
         user = MyUser.objects.create_user(email)
         user.set_password(password)
-
-        token = Token.objects.create(user=user)
+        token = Token.objects.create(user=user).key
         user.save()
 
-        send_email(email, password)
+        try:
+            send_email(email, password)
+        except:
+            pass
 
-        return Response(status=200, data={"auth_token": token.key})
+        return Response({'email': email, 'id': user.id, 'auth_token': token}, status=status.HTTP_201_CREATED)
 
 
 class LoginAPIView(APIView):
@@ -40,7 +55,12 @@ class LoginAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        email = serializer.validated_data['email']
+        token = serializer.validated_data['auth_token'].key
+
+        user = MyUser.objects.filter(email__exact=email).first()
+
+        return Response({'email': email, 'id': user.id, 'auth_token': token}, status=status.HTTP_200_OK)
 
 
 class UserDetailsView(viewsets.ViewSet):
