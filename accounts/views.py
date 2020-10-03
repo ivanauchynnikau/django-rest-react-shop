@@ -63,14 +63,33 @@ class LoginAPIView(APIView):
         return Response({'email': email, 'id': user.id, 'auth_token': token}, status=status.HTTP_200_OK)
 
 
-class UserDetailsView(viewsets.ViewSet):
-    def get_user(self, request):
+class UserDetailsAPIView(APIView):
+    def get(self, request):
+        if not request.auth:
+            return Response({'error': 'Auth data is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not request.auth.key:
+            return Response({'error': 'Token is required'}, status=status.HTTP_400_BAD_REQUEST)
+
         try:
             user = Token.objects.get(key=request.auth.key).user
         except Token.DoesNotExist:
-            return Response(status=400, data={'error_text': 'User does not exists'})
+            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
         if user is not None:
             return Response(status=200, data={"email": user.email, "id": user.id})
         else:
-            return Response(status=400, data={'error_text': 'User does not exists'})
+            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def post(self, request):
+        # TODO finish!
+
+        # try:
+        #     user = Token.objects.get(key=request.auth.key).user
+        # except Token.DoesNotExist:
+        #     return Response(status=400, data={'error_text': 'User does not exists'})
+        #
+        # if user is not None:
+        #     return Response(status=200, data={"email": user.email, "id": user.id})
+        # else:
+        return Response({'tratata': 'dadaa'}, status=status.HTTP_200_OK)
