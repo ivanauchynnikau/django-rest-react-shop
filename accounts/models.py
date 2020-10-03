@@ -36,6 +36,8 @@ class MyUserManager(BaseUserManager):
 
 class MyUser(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -68,7 +70,3 @@ class MyUser(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
-
-    class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'

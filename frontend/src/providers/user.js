@@ -61,6 +61,8 @@ export default class UserProvider extends DataProvider {
       .then((response) =>  {
         const data = {
           email: response.data.email,
+          firstName: response.data.first_name,
+          lastName: response.data.last_name,
           id: response.data.id,
           isAuthenticated: true
         };

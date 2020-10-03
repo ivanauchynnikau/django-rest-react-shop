@@ -27,6 +27,7 @@
 
   &__user {
     display: flex;
+    align-items: center;
 
     &-btn {
       border: none;
@@ -42,7 +43,7 @@
   }
 
   &__button {
-    margin: 0 10px;
+    margin: 0 10px 0 15px;
     padding-left: 5px;
     padding-right: 5px;
   }

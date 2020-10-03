@@ -8,6 +8,8 @@ import React from "react";
 const initialState = {
   id: '',
   email: '',
+  firstName: '',
+  lastName: '',
   isAuthenticated: false,
 };
 

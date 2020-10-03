@@ -65,6 +65,7 @@ class LoginAPIView(APIView):
 
 class UserDetailsAPIView(APIView):
     def get(self, request):
+        # TODO check that current user tries to get his data, not someone else user
         if not request.auth:
             return Response({'error': 'Auth data is required'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -77,7 +78,12 @@ class UserDetailsAPIView(APIView):
             return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
         if user is not None:
-            return Response(status=200, data={"email": user.email, "id": user.id})
+            return Response(status=200, data={
+                "id": user.id,
+                "email": user.email,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+            })
         else:
             return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
