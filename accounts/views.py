@@ -69,7 +69,7 @@ class UserDetailsAPIView(APIView):
             return Response({'error': 'Auth data is required'}, status=status.HTTP_400_BAD_REQUEST)
 
         if not request.auth.key:
-            return Response({'error': 'Token is required'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Auth token is required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             user = Token.objects.get(key=request.auth.key).user
@@ -82,14 +82,21 @@ class UserDetailsAPIView(APIView):
             return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request):
-        # TODO finish!
+        if not request.auth:
+            return Response({'error': 'Auth data is required'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # try:
-        #     user = Token.objects.get(key=request.auth.key).user
-        # except Token.DoesNotExist:
-        #     return Response(status=400, data={'error_text': 'User does not exists'})
-        #
-        # if user is not None:
-        #     return Response(status=200, data={"email": user.email, "id": user.id})
-        # else:
-        return Response({'tratata': 'dadaa'}, status=status.HTTP_200_OK)
+        if not request.auth.key:
+            return Response({'error': 'Auth token is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # TODO check does request has first name, last name
+
+        try:
+            user = Token.objects.get(key=request.auth.key).user
+        except Token.DoesNotExist:
+            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if user is not None:
+            # TODO update user first name, last name in db
+            return Response(status=200, data={"email": user.email, "id": user.id})
+        else:
+            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
