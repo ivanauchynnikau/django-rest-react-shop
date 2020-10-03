@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import LocalCart from "../../providers/local-cart";
 import UserProvider from "../../providers/user";
+import {push} from "react-router-redux";
 
 
 export class TopBar extends Component {
@@ -45,6 +46,7 @@ export class TopBar extends Component {
 
   logOut = () => {
     this.props.userProvider.logOut();
+    this.props.redirectToHomePage();
   }
 
   render() {
@@ -112,5 +114,6 @@ export default connect(
   dispatch => ({
     localCartProvider: new LocalCart(dispatch),
     userProvider: new UserProvider(dispatch),
+    redirectToHomePage: () => {dispatch(push('/'))},
   })
 )(TopBar);

@@ -60,12 +60,22 @@ class LoginAPIView(APIView):
 
         user = MyUser.objects.filter(email__exact=email).first()
 
-        return Response({'email': email, 'id': user.id, 'auth_token': token}, status=status.HTTP_200_OK)
+        return Response({
+            'email': email,
+            'last_name': user.last_name,
+            'first_name': user.first_name,
+            'id': user.id,
+            'auth_token': token
+        }, status=status.HTTP_200_OK)
 
 
 class UserDetailsAPIView(APIView):
     def get(self, request):
-        # TODO check that current user tries to get his data, not someone else user
+        """
+        Checks is user exists.
+        Auth Token is required.
+        Returns Email, First name, Last name, Id.
+        """
         if not request.auth:
             return Response({'error': 'Auth data is required'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -88,21 +98,45 @@ class UserDetailsAPIView(APIView):
             return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request):
-        if not request.auth:
-            return Response({'error': 'Auth data is required'}, status=status.HTTP_400_BAD_REQUEST)
+        """
+        Checks is user exists.
+        First name, Last name, Auth Token are required.
+        Update First name and Last name.
+        Returns Email, First name, Last name, Id.
+        """
+        print(request)
+        data = request.data
 
-        if not request.auth.key:
+        if not data:
+            return Response({'error': 'Data is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        auth_token = data['authToken']
+        if not auth_token:
             return Response({'error': 'Auth token is required'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # TODO check does request has first name, last name
+        first_name = data['firstName']
+        if not first_name:
+            return Response({'error': 'First name is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        last_name = data['lastName']
+        if not last_name:
+            return Response({'error': 'Last name is required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            user = Token.objects.get(key=request.auth.key).user
+            user = Token.objects.get(key=auth_token).user
         except Token.DoesNotExist:
             return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
         if user is not None:
-            # TODO update user first name, last name in db
-            return Response(status=200, data={"email": user.email, "id": user.id})
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
+            return Response(status=200, data={
+                "email": user.email,
+                "id": user.id,
+                'first_name': user.first_name,
+                'last_name': user.last_name
+            })
         else:
             return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)

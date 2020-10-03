@@ -16,9 +16,12 @@ export default class UserProvider extends DataProvider {
 
         const data = {
           email: response.data.email,
+          firstName: response.data.first_name,
+          lastName: response.data.last_name,
           id: response.data.id,
           isAuthenticated: true
         };
+
         this.dispatch(SET_USER, {data});
 
         return response;
@@ -58,6 +61,27 @@ export default class UserProvider extends DataProvider {
         'Authorization': `Token ${token}`
       }
     })
+      .then((response) =>  {
+        const data = {
+          email: response.data.email,
+          firstName: response.data.first_name,
+          lastName: response.data.last_name,
+          id: response.data.id,
+          isAuthenticated: true
+        };
+
+        this.dispatch(SET_USER, {data});
+        return response;
+      })
+      .finally(() => {
+        this.dispatch(END_LOADING);
+      });
+  }
+
+  updateUser({authToken, firstName, lastName}) {
+    this.dispatch(START_LOADING);
+
+    return axios.post('/api/v1/accounts/me/', {lastName, firstName, authToken})
       .then((response) =>  {
         const data = {
           email: response.data.email,
