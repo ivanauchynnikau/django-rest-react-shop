@@ -104,7 +104,6 @@ class UserDetailsAPIView(APIView):
         Update First name and Last name.
         Returns Email, First name, Last name, Id.
         """
-        print(request)
         data = request.data
 
         if not data:
