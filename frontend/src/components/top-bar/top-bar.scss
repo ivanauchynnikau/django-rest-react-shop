@@ -48,13 +48,15 @@
       align-items: start;
       padding-top: 8px;
       padding-bottom: 8px;
-      right: 20px;
+      right: 50px;
+      min-width: 170px;
+      outline: none;
 
       &-link {
-        transition: background-color 0.2s ease-in-out;
+        transition: background-color .2s ease-in-out;
         width: 100%;
         color: $main-color;
-        padding: 12px 35px;
+        padding: 12px 35px 12px 20px;
         text-align: left;
         font-size: 18px;
         text-decoration: none;
@@ -90,5 +92,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
 }
