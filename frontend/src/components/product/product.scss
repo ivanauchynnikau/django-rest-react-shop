@@ -20,6 +20,10 @@
     box-shadow: $box-shadow-hover;
   }
 
+  &._order-list-page {
+    margin-bottom: 20px;
+  }
+
   &._product-page {
     display: flex;
     box-shadow: none;

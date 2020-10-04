@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import UserProvider from "../../providers/user";
+import OrderProvider from "../../providers/orders";
 import {push} from "react-router-redux";
+import uuid from "react-uuid";
+import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
+import Product from "../product/product";
+import {Link} from "react-router-dom";
 
 
 class OrdersListPage extends Component {
@@ -9,47 +13,65 @@ class OrdersListPage extends Component {
     super(props);
 
     this.state = {
-      // isEditMode: false,
-      // newLastName: props.user.lastName,
-      // newFirstName: props.user.firstName
+      orderList: []
     };
   }
 
-  // static defaultProps = {
-  //   user: {},
-  // };
+  componentDidMount() {
+    const token = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+    if (!token) {
+      this.props.redirectToHomePage();
+      return;
+    }
 
-  // static getDerivedStateFromProps(props) {
-  //   return {
-  //     email: props.user.email,
-  //     lastName: props.user.lastName,
-  //     firstName: props.user.firstName
-  //   };
-  // }
-
-  // componentDidMount() {
-  //   const token = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
-  //   if (!token) {
-  //     this.props.redirectToHomePage();
-  //     return;
-  //   }
-  //
-  //   this.props.userProvider.getUser(token)
-  //     .catch(() => {
-  //       this.props.redirectToHomePage();
-  //     });
-  // }
+    this.props.orderProvider.getUserOrdersList({token})
+      .then((response) => {
+        this.setState({orderList: response.data});
+      })
+      .catch(() => {
+        this.props.redirectToHomePage();
+      });
+  }
 
   render() {
-    const {} = this.state;
+    const {
+      orderList
+    } = this.state;
 
     return (
       <div className="orders-list-page">
         <h2>My orders</h2>
         <div className="orders-list-page__list">
-          <div className="orders-list-page__list-item">
-            123
-          </div>
+          {
+            orderList && orderList.length ?
+            orderList.map((order) => {
+              return (
+                <div className="orders-list-page__list-item" key={uuid()}>
+                  <div className="orders-list-page__list-item-top">
+                    <h3>Order №: {order.id}</h3>
+                    <h3>Order date: {order.create_date}</h3>
+                  </div>
+                  <div className="orders-list-page__list-item-content">
+                    {
+                      order.product_items.map((product) => {
+                        return (
+                          <Product
+                            customClass="_order-list-page"
+                            orderViewMode={true}
+                            product={product}
+                          />
+                        )
+                      })
+                    }
+                  </div>
+                </div>
+              )
+            })
+            :
+            <div className="cart-page__empty">
+              Your order list is empty, please go to <Link to="/">catalog</Link>
+            </div>
+          }
         </div>
       </div>
     );
@@ -61,7 +83,7 @@ export default connect(
     user: state.user.user
   }),
   dispatch => ({
-    userProvider: new UserProvider(dispatch),
+    orderProvider: new OrderProvider(dispatch),
     redirectToHomePage: () => {dispatch(push('/'))},
   })
 )(OrdersListPage);

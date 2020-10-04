@@ -1,11 +1,12 @@
-from rest_framework import viewsets, status
+from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from .serializers import LoginSerializer
 from .models import MyUser
 from .serializers import RegistrationSerializer
-from accounts.emailer import send_email
+from .emailer import send_email
 
 
 class RegistrationAPIView(APIView):

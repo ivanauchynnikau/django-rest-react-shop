@@ -32,4 +32,20 @@ export default class OrderProvider extends DataProvider {
         this.dispatch(END_LOADING);
       });
   }
+
+  getUserOrdersList({token}) {
+    this.dispatch(START_LOADING);
+
+    return axios.get(`/api/v1/orders/user/`, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    })
+      .then((response) =>  {
+        return response.data;
+      })
+      .finally(() => {
+        this.dispatch(END_LOADING);
+      });
+  }
 }

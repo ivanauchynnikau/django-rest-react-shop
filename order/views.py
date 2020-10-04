@@ -1,15 +1,20 @@
-from rest_framework import generics
-from rest_framework.response import Response
+import decimal
 
-from order.serializers import OrderDetailSerializer, OrderListSerializer
-from order.models import Order, MyUser
-from order.permissions import IsOwner
-from order.emailer import send_email
-from rest_framework import viewsets
+from rest_framework import generics, viewsets, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+
+from .serializers import OrderDetailSerializer
+from .models import MyUser
+from .permissions import IsOwner
+from .emailer import send_email
+from .choices import ORDER_STATUSES
 
 from orderItem.models import OrderItem
+
+from order.models import Order
 from product.models import Product
-from order.choices import ORDER_STATUSES
 
 
 class OrderCreateView(viewsets.ViewSet):
@@ -48,17 +53,60 @@ class OrderCreateView(viewsets.ViewSet):
         order = Order.objects.filter(id=order.id)
         order = order.values()
 
-        # TODO return error if one of product is not added to order
+        # TODO return warn if one of product is not added to order
         return Response(status=200, data=order)
-
-
-class OrderListView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = OrderListSerializer
-    queryset = Order.objects.all()
-    permission_classes = (IsOwner, )
 
 
 class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderDetailSerializer
     queryset = Order.objects.all()
     permission_classes = (IsOwner, )
+
+
+class OrderUserListAPIView(APIView):
+    def get(self, request):
+        """
+        Checks is user exists.
+        Auth Token is required.
+        Returns user orders list
+        """
+        if not request.auth:
+            return Response({'error': 'Auth data is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not request.auth.key:
+            return Response({'error': 'Auth token is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user = Token.objects.get(key=request.auth.key).user
+        except Token.DoesNotExist:
+            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+        response_array = []
+        order_list = (Order.objects.filter(user_id__exact=user.id).values('id', 'state', 'create_date'))
+
+        for order in order_list:
+            order_items = OrderItem.objects.filter(order_id__exact=order['id'])
+            product_items_list = []
+
+            for order_item in order_items:
+                product = Product.objects.filter(id__exact=order_item.item_id).first()
+
+                product_dict = {
+                    'image': product.image.url,
+                    'title': product.title,
+                    'description': product.description,
+                    'price': str(decimal.Decimal(product.price))
+                }
+
+                product_items_list.append(product_dict)
+
+            response_order = {
+                'id': order['id'],
+                'state': order['state'],
+                'create_date': order['create_date'].strftime('%Y-%m-%d %H:%M'),
+                'product_items': product_items_list
+            }
+
+            response_array.append(response_order)
+
+        return Response({'data': response_array}, status=status.HTTP_200_OK)

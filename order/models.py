@@ -10,6 +10,7 @@ class Order(models.Model):
     )
     user = models.ForeignKey(MyUser, related_name='user', default=0, on_delete=models.CASCADE)
     state = models.IntegerField(verbose_name='Order state', choices=STATE)
+    create_date = models.DateTimeField(verbose_name='Create date', auto_now_add=True, null=True)
     comment = models.CharField(verbose_name='Comment', max_length=256)
 
     class Meta:

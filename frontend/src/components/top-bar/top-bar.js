@@ -94,14 +94,14 @@ export class TopBar extends Component {
                         >
                           My orders
                         </Link>
+                        <a
+                          className="top-bar__user-dropdown-link"
+                          onClick={this.logOut}
+                        >
+                          Log out
+                        </a>
                       </div> : null
                     }
-                  </button>
-                  <button
-                    className="button top-bar__button"
-                    onClick={this.logOut}
-                  >
-                    Log out
                   </button>
                 </div>
                   :

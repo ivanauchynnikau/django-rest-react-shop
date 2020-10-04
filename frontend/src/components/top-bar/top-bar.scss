@@ -30,6 +30,7 @@
     align-items: center;
 
     &-btn {
+      margin-right: 20px;
       border: none;
       background: transparent;
       border-radius: 50%;
@@ -47,6 +48,7 @@
       align-items: start;
       padding-top: 8px;
       padding-bottom: 8px;
+      right: 20px;
 
       &-link {
         transition: background-color 0.2s ease-in-out;
