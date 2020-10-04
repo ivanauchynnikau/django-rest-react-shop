@@ -35,7 +35,13 @@
       }
 
       &__title {
-        width: 100%;
+        text-align: left;
+        padding-left: 40%;
+
+        @media (max-width: $small) {
+          text-align: center;
+          padding-left: 0;
+        }
       }
 
       &__link {
@@ -44,9 +50,12 @@
 
       &__top {
         width: 35%;
+        position: relative;
+        top: -45px;
 
         @media (max-width: $small) {
           width: 100%;
+          position: static;
         }
       }
 
@@ -87,7 +96,9 @@
 
   &__title {
     height: 34px;
-    font-size: 22px;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 10px;
     @include text-ellipsis;
   }
 
