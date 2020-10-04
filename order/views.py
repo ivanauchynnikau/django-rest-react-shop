@@ -94,6 +94,7 @@ class OrderUserListAPIView(APIView):
                 product_dict = {
                     'image': product.image.url,
                     'title': product.title,
+                    'id': product.id,
                     'description': product.description,
                     'price': str(decimal.Decimal(product.price))
                 }

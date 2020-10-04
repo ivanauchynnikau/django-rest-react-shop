@@ -48,7 +48,12 @@ class OrdersListPage extends Component {
               return (
                 <div className="orders-list-page__list-item" key={uuid()}>
                   <div className="orders-list-page__list-item-top">
-                    <h3>Order №: {order.id}</h3>
+                    <Link
+                      className="orders-list-page__list-item-link"
+                      to={`/orders/${order.id}`}
+                    >
+                      <h3>Order №: {order.id}</h3>
+                    </Link>
                     <h3>Order date: {order.create_date}</h3>
                   </div>
                   <div className="orders-list-page__list-item-content">
@@ -56,7 +61,6 @@ class OrdersListPage extends Component {
                       order.product_items.map((product) => {
                         return (
                           <Product
-                            customClass="_order-list-page"
                             orderViewMode={true}
                             product={product}
                           />

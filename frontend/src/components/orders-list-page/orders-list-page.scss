@@ -4,9 +4,13 @@
   &__list {
     &-item {
       border-radius: $border-radius;
-      margin-bottom: 10px;
-      padding-bottom: 20px;
+      margin-bottom: 30px;
+      padding-bottom: 40px;
       border-bottom: 1px solid #ccc;
+
+      &-link {
+        color: $main-color;
+      }
 
       &-content {
         display: grid;
