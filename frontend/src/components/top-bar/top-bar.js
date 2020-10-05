@@ -73,7 +73,10 @@ export class TopBar extends Component {
             <div className="top-bar__right">
               {
                 user.isAuthenticated ?
-                <div className="top-bar__user">
+                <div
+                  className="top-bar__user"
+                  data-locator="top-bar-user-block"
+                >
                   <button
                     onClick={this.toggleAccountDropdown}
                     className="top-bar__user-btn"
@@ -106,6 +109,7 @@ export class TopBar extends Component {
                 </div>
                   :
                 <button
+                  data-locator="open-sign-up-modal-btn"
                   className="button top-bar__button"
                   onClick={this.openSignInModal}
                 >

@@ -22,7 +22,10 @@ class Loader extends Component {
     if (!this.props.isLoading) return null;
 
     return (
-      <div className="lds-ellipsis__wrapper">
+      <div
+        data-locator="loading"
+        className="lds-ellipsis__wrapper"
+      >
         <div className="lds-ellipsis">
           <div/><div/><div/><div/>
         </div>

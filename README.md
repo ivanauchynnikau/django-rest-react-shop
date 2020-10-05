@@ -1,5 +1,4 @@
-# DjangoRestReactShop
-[django-rest-react-shop.herokuapp.com](https://django-rest-react-shop.herokuapp.com/)
+#[DjangoRestReactShop](https://django-rest-react-shop.herokuapp.com/)
 
 ### Requirements
 * Ubuntu 18.04
@@ -44,4 +43,22 @@ to install `pyenv`. After installing, run this:
     python manage.py runserver 0:8080
 
 *Enjoy!*
+
+***
+
+### UI tests setup
+    npm install -g node-gyp
+    selenium-standalone install
+    npm config set python /path/to/executable/python
+    npm install hermione chai --save-dev
+
+**Hermione works fine with python 2.7*
+
+Run tests
+
+    selenium-standalone start
+    npm run test
+
+If you will get error like No Java runtime present, requesting install. you should install Java Development Kit (JDK) for your OS.
+
 

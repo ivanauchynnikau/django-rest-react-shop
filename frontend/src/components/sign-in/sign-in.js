@@ -94,11 +94,14 @@ class SignIn extends Component {
     } = this.state;
 
     return (
-      <div className="sign-in">
+      <div
+        className="sign-in"
+        data-locator="sign-in-modal"
+      >
       <Tabs>
         <TabList>
           <Tab>Login</Tab>
-          <Tab>Sign up</Tab>
+          <Tab data-locator="sign-up-tab">Sign up</Tab>
         </TabList>
 
         <TabPanel>
@@ -142,6 +145,7 @@ class SignIn extends Component {
             <div className="form-item">
               <label className="form-item__label" htmlFor="email">Email</label>
               <input
+                data-locator="sign-up-email-input"
                 name="email"
                 onChange={(e) => {
                   handleValueChange(this, e.target.name, e.target.value)
@@ -155,6 +159,7 @@ class SignIn extends Component {
             <div className="form-item">
               <label className="form-item__label" htmlFor="password">Password</label>
               <input
+                data-locator="sign-up-password-input"
                 name="password"
                 onChange={(e) => {
                   handleValueChange(this, e.target.name, e.target.value)
@@ -168,6 +173,7 @@ class SignIn extends Component {
             <div className="form-item">
               <label className="form-item__label" htmlFor="passwordRepeat">Password repeat</label>
               <input
+                data-locator="sign-up-password-repeat-input"
                 name="passwordRepeat"
                 onChange={(e) => {
                   handleValueChange(this, e.target.name, e.target.value)
@@ -179,6 +185,7 @@ class SignIn extends Component {
               {this.signUpValidator.message('passwordRepeat', this.state.passwordRepeat, `required|min:6|in:${this.state.password}`, {messages: {in: 'Passwords need to match!'}})}
             </div>
             <button
+              data-locator="sign-up-submit-btn"
               className="button sign-in__button"
               onClick={this.signUp}
             >
