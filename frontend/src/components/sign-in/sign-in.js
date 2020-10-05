@@ -110,6 +110,7 @@ class SignIn extends Component {
               <label className="form-item__label" htmlFor="loginEmail">Email</label>
               <input
                 name="loginEmail"
+                data-locator="login-email-input"
                 onChange={(e) => {
                   handleValueChange(this, e.target.name, e.target.value)
                 }}
@@ -122,6 +123,7 @@ class SignIn extends Component {
             <div className="form-item">
               <label className="form-item__label" htmlFor="loginPassword">Password</label>
               <input
+                data-locator="login-password-input"
                 name="loginPassword"
                 onChange={(e) => {
                   handleValueChange(this, e.target.name, e.target.value)
@@ -133,6 +135,7 @@ class SignIn extends Component {
               {this.loginValidator.message('password', loginPassword, 'required|min:6')}
             </div>
             <button
+              data-locator="login-submit-btn"
               className="button sign-in__button"
               onClick={this.login}
             >
