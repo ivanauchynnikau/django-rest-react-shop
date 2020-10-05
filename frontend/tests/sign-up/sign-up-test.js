@@ -25,40 +25,38 @@ var topBarUserBtn = '[data-locator="top-bar-user-btn"]';
 var email = users.email;
 var password = users.password;
 
-describe('Website >', () => {
-  describe('Home >', () => {
-    it('Should register user', function () {
-      return this.browser
-        .url('/')
-        .waitForVisible(openSignInModalBtn, delays.visible)
-        .click(openSignInModalBtn)
-        .waitForVisible(signInModal, delays.visible)
-        .click(signUpTabBtn)
-        .waitForVisible(signUpEmailInput, delays.visible)
-        .setValue(signUpEmailInput, email)
-        .setValue(signUpPasswordInput, password)
-        .setValue(signUpPasswordRepeatInput, password)
-        .click(signUpSubmitBtn)
-        .waitForVisible(loading, delays.visible)
-        .then(() => {assert.ok(this.browser.waitForVisible(topBarUserBlock, delays.visible))})
-    });
+describe('Home >', () => {
+  it('Should register user', function () {
+    return this.browser
+      .url('/')
+      .waitForVisible(openSignInModalBtn, delays.visible)
+      .click(openSignInModalBtn)
+      .waitForVisible(signInModal, delays.visible)
+      .click(signUpTabBtn)
+      .waitForVisible(signUpEmailInput, delays.visible)
+      .setValue(signUpEmailInput, email)
+      .setValue(signUpPasswordInput, password)
+      .setValue(signUpPasswordRepeatInput, password)
+      .click(signUpSubmitBtn)
+      .waitForVisible(loading, delays.visible)
+      .then(() => {assert.ok(this.browser.waitForVisible(topBarUserBlock, delays.visible))})
+  });
 
-    it('Should log in and log out user', function () {
-      return this.browser
-        .url('/')
-        .waitForVisible(openSignInModalBtn, delays.visible)
-        .click(openSignInModalBtn)
-        .waitForVisible(loginEmailInput, delays.visible)
-        .setValue(loginEmailInput, email)
-        .setValue(loginPasswordInput, password)
-        .click(loginSubmitBtn)
-        .waitForVisible(loading, delays.visible)
-        .waitForVisible(topBarUserBtn, delays.visible)
-        .click(topBarUserBtn)
-        .waitForVisible(topBarDropdown, delays.visible)
-        .waitForVisible(topBarLogoutBtn, delays.visible)
-        .click(topBarLogoutBtn)
-        .then(() => {assert.ok(this.browser.waitForVisible(openSignInModalBtn, delays.visible))})
-    });
+  it('Should login and logout user', function () {
+    return this.browser
+      .url('/')
+      .waitForVisible(openSignInModalBtn, delays.visible)
+      .click(openSignInModalBtn)
+      .waitForVisible(loginEmailInput, delays.visible)
+      .setValue(loginEmailInput, email)
+      .setValue(loginPasswordInput, password)
+      .click(loginSubmitBtn)
+      .waitForVisible(loading, delays.visible)
+      .waitForVisible(topBarUserBtn, delays.visible)
+      .click(topBarUserBtn)
+      .waitForVisible(topBarDropdown, delays.visible)
+      .waitForVisible(topBarLogoutBtn, delays.visible)
+      .click(topBarLogoutBtn)
+      .then(() => {assert.ok(this.browser.waitForVisible(openSignInModalBtn, delays.visible))})
   });
 });
