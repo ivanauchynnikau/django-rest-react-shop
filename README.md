@@ -61,4 +61,6 @@ Run tests
 
 If you will get error like No Java runtime present, requesting install. you should install Java Development Kit (JDK) for your OS.
 
+### Run python tests
+    python manage.py test
 
