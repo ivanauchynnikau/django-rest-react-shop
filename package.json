@@ -5,7 +5,9 @@
   "scripts": {
     "prod": "webpack --config webpack.prod.js",
     "dev": "webpack --config webpack.dev.js",
-    "test": "node_modules/.bin/hermione",
+    "hermione": "node_modules/.bin/hermione",
+    "hermione-gui": "node_modules/.bin/hermione gui",
+    "hermione-update": "node_modules/.bin/hermione --update-refs",
     "heroku-postbuild": "webpack --config webpack.prod.js"
   },
   "heroku-run-build-script": true,
@@ -25,6 +27,8 @@
     "chai": "4.2.0",
     "clean-webpack-plugin": "3.0.0",
     "css-loader": "3.4.2",
+    "hermione": "3.9.0",
+    "html-reporter": "5.16.4",
     "mini-css-extract-plugin": "0.11.1",
     "node-sass": "4.13.1",
     "optimize-css-assets-webpack-plugin": "5.0.4",
@@ -50,7 +54,6 @@
     "classnames": "2.2.6",
     "connected-react-router": "6.8.0",
     "create-react-class": "15.6.3",
-    "hermione": "2.12.6",
     "history": "4.10.1",
     "i": "0.3.6",
     "js-cookie": "2.2.1",

@@ -50,16 +50,28 @@ to install `pyenv`. After installing, run this:
     npm install -g node-gyp
     selenium-standalone install
     npm config set python /path/to/executable/python
-    npm install hermione chai --save-dev
 
 **Hermione works fine with python 2.7*
 
-Run tests
+Run selenium
 
     selenium-standalone start
-    npm run test
 
 If you will get error like No Java runtime present, requesting install. you should install Java Development Kit (JDK) for your OS.
+
+To update screenshots
+
+    npm run hermione-update
+
+To run tests
+
+    npm run hermione
+
+To run tests with GUI
+
+    npm run hermione
+
+***
 
 ### Run python tests
     python manage.py test

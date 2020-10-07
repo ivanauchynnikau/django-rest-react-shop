@@ -22,11 +22,11 @@ var topBarLogoutBtn = '[data-locator="top-bar-log-out-btn"]';
 var topBarUserBtn = '[data-locator="top-bar-user-btn"]';
 
 
-var email = users.email;
-var password = users.password;
+describe('Home', () => {
+  let email = users.email();
+  const password = users.password;
 
-describe('Home >', () => {
-  it('Should register user', function () {
+  it('Should test user registration', function () {
     return this.browser
       .url('/')
       .waitForVisible(openSignInModalBtn, delays.visible)
@@ -42,7 +42,7 @@ describe('Home >', () => {
       .then(() => {assert.ok(this.browser.waitForVisible(topBarUserBlock, delays.visible))})
   });
 
-  it('Should login and logout user', function () {
+  it('Should test user login and logout', function () {
     return this.browser
       .url('/')
       .waitForVisible(openSignInModalBtn, delays.visible)
