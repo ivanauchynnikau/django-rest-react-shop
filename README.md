@@ -59,17 +59,17 @@ Run selenium
 
 If you will get error like No Java runtime present, requesting install. you should install Java Development Kit (JDK) for your OS.
 
-To update screenshots
-
-    npm run hermione-update
-
 To run tests
 
     npm run hermione
 
 To run tests with GUI
 
-    npm run hermione
+    npm run hermione-gui
+
+To update screenshots
+
+    npm run hermione-update
 
 ***
 
