@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import OrderProvider from "../../providers/orders";
 import {push} from "react-router-redux";
+import {getOrderStateName} from "../../utils/js/utils";
 import Product from "../product/product";
 import uuid from "react-uuid";
 
@@ -31,17 +32,6 @@ class OrderPage extends Component {
       });
   }
 
-  orderStateRenderer = () => {
-    switch(this.state.order.state) {
-      case null:
-        return null
-      case 0:
-        return 'in progress';
-      case 1:
-        return 'finished';
-    }
-  }
-
   totalPriceRenderer = () => {
     const totalPrice = this.state.order.items.reduce((sum, item) => sum + (parseFloat(item.item.price)), 0).toFixed(2);
     return totalPrice
@@ -55,7 +45,7 @@ class OrderPage extends Component {
     return (
       <div className="order-page">
         <div className="order-page__status">
-          Order status: {this.orderStateRenderer()}
+          Order status: {getOrderStateName(order.state)}
         </div>
         <div className="order-page__total">
           Total order price: {this.totalPriceRenderer()}

@@ -4,6 +4,7 @@ import OrderProvider from "../../providers/orders";
 import {push} from "react-router-redux";
 import uuid from "react-uuid";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
+import {getOrderStateName} from "../../utils/js/utils";
 import Product from "../product/product";
 import {Link} from "react-router-dom";
 
@@ -48,6 +49,7 @@ class OrdersListPage extends Component {
               return (
                 <div className="orders-list-page__list-item" key={uuid()}>
                   <div className="orders-list-page__list-item-top">
+                    <h3>Order status: {getOrderStateName(order.state)}</h3>
                     <Link
                       className="orders-list-page__list-item-link"
                       to={`/orders/${order.id}`}
@@ -61,6 +63,7 @@ class OrdersListPage extends Component {
                       order.product_items.map((product) => {
                         return (
                           <Product
+                            key={uuid()}
                             orderViewMode={true}
                             product={product}
                           />

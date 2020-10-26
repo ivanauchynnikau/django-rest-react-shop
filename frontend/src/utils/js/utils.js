@@ -29,3 +29,14 @@ export const getError = (error) => {
 
   return errorText;
 };
+
+export const getOrderStateName = (state) => {
+  if (state === undefined) return '';
+
+  switch(state) {
+    case 0:
+      return "In progress";
+    case 1:
+      return "Finished";
+  }
+}
