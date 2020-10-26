@@ -4,10 +4,10 @@ from order.models import Order
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items', null=True, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='Items', null=True, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, related_name='Product', null=True, on_delete=models.CASCADE)
     amount = models.IntegerField(default=0, verbose_name='Amount')
-    price = models.DecimalField(verbose_name='Цена', max_digits=10, decimal_places=2, default=0)
+    price = models.DecimalField(verbose_name='Price', max_digits=10, decimal_places=2, default=0)
 
     class Meta:
         verbose_name = "Order item"
