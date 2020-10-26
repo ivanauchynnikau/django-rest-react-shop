@@ -1,4 +1,4 @@
-#[DjangoRestReactShop](https://django-rest-react-shop.herokuapp.com/)
+[DjangoRestReactShop](https://django-rest-react-shop.herokuapp.com/)
 
 ### Requirements
 * Ubuntu 18.04
