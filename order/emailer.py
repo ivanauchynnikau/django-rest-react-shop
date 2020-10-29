@@ -11,7 +11,7 @@ def send_email(recipient_mail, order_id, product_list):
 
     for product in product_list:
         message += f'<p style="font-size: 22px;">{ product["title"] }</p>'
-        # message += f'<div><img style="max-width: 320px;" src="https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{ product["image"] }"></div>'
+        message += f'<div><img style="max-width: 320px;" src="https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{ product["image"] }"></div>'
         message += f'<p>Description: { product["description"] }</p>'
         message += f'<p style="font-size: 18px;">Price: { product["price"] }</p>'
         message += f'<br><hr><br>'
