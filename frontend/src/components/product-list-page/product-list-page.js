@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
+import * as React from "react";
 import {connect} from "react-redux";
 import ProductProvider from "./../../providers/products";
 import Product from "./../../components/product/product";

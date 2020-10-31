@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
+import * as React from "react";
 import SimpleReactValidator from 'simple-react-validator';
 import {handleValueChange} from "../../utils/js/utils";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';

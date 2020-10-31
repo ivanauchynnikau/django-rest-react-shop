@@ -25,7 +25,7 @@ export default class LocalCart extends DataProvider {
     this.dispatch(UPDATE_CART, {data: updatedCartItemsArray});
   }
 
-  removeProduct (productId) {
+  removeProduct(productId) {
     const cart = localStorage.getItem(LOCAL_STORAGE_KEYS.LOCAL_CART);
 
     if (cart && JSON.parse(cart).length) {
@@ -42,14 +42,14 @@ export default class LocalCart extends DataProvider {
     }
   }
 
-  getProductsInCart () {
+  getProductsInCart() {
     const ordersListJsonString = localStorage.getItem(LOCAL_STORAGE_KEYS.LOCAL_CART);
     if (!ordersListJsonString) return;
 
     this.dispatch(UPDATE_CART, {data: JSON.parse(ordersListJsonString)});
   }
 
-  clearCart () {
+  clearCart() {
     localStorage.setItem(LOCAL_STORAGE_KEYS.LOCAL_CART, JSON.stringify([]));
     this.dispatch(UPDATE_CART, {data: []});
   }

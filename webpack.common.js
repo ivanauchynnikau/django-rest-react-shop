@@ -5,25 +5,33 @@ const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 module.exports = {
   entry: [
-    'babel-polyfill',
     './frontend/src/app.js'
   ],
+  target: "web",
   output: {
     path: path.resolve(__dirname, './frontend/static/build'),
     filename: 'app.js',
     publicPath: './static'
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
   },
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        loader: "awesome-typescript-loader",
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader",
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
-
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file-loader',

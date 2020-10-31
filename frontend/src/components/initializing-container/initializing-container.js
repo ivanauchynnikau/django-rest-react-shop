@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import * as React from "react";
+import {Component} from 'react';
 import {connect} from "react-redux";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 import UserProvider from "../../providers/user";
