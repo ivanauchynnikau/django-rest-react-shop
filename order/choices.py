@@ -1,3 +1,0 @@
-class ORDER_STATUSES:
-    STARTED = 0
-    FINISHED = 1
