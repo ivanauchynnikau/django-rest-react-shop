@@ -6,7 +6,7 @@ import LocalCart from "../../providers/local-cart";
 import {Link} from "react-router-dom";
 import {CURRENCY} from "../../utils/js/config";
 
-export interface ProductShape {
+export interface IProduct {
   id: number,
   title: string,
   image: string,
@@ -16,7 +16,7 @@ export interface ProductShape {
   in_stock: number,
 }
 
-export interface CartItemShape {
+export interface ICartItem {
   id: number,
   title: string,
   image: string,
@@ -26,8 +26,8 @@ export interface CartItemShape {
   inStock: number,
 }
 
-export interface Props {
-  product: ProductShape,
+export interface IProductProps {
+  product: IProduct,
   customClass: string,
   orderViewMode: boolean,
   localCartProvider: {
@@ -35,7 +35,7 @@ export interface Props {
   },
 }
 
-class Product extends Component<Props> {
+class Product extends Component<IProductProps> {
   static propTypes = {
     product: PropTypes.object.isRequired,
     customClass: PropTypes.string,
