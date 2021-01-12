@@ -1,0 +1,33 @@
+.account-page {
+  padding-top: 20px;
+  max-width: 600px;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__button {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  &__edit-button {
+    padding: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+
+    &:focus,
+    &:hover {
+      opacity: .8;
+    }
+
+    &:active {
+      opacity: .8;
+    }
+  }
+}

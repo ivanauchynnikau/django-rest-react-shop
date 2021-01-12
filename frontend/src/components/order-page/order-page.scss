@@ -1,0 +1,32 @@
+.order-page {
+  &__status {
+    padding-top: 30px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__product {
+    &-list {
+      margin-bottom: 30px;
+    }
+
+    &-item {
+      & + & {
+        margin-top: 40px;
+      }
+    }
+
+    &-title {
+      margin-bottom: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  &__total {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}

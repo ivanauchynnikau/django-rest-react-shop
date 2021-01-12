@@ -1,0 +1,48 @@
+// colors
+$main-color: #1BA098;
+$warning-color: #a05b1b;
+$danger-color: #a01b1f;
+
+
+// defaults
+$box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+$box-shadow-hover: 0 0 22px rgba(0, 0, 0, .2);
+$border-radius: 4px;
+
+
+// buttons
+$btn-text: #fff;
+$btn-bg: #1BA098;
+$btn-bg-hover: darken( $btn-bg, 7%);
+$btn-bg-active: darken( $btn-bg, 18%);
+
+$btn-bg-danger: #a01b1f;
+$btn-bg-danger-hover: darken( $btn-bg-danger, 4%);
+$btn-bg-danger-active: darken( $btn-bg-danger, 10%);
+
+$btn-bg-ghost: #1BA098;
+$btn-bg-ghost-hover: darken( $btn-bg-ghost, 8%);
+$btn-bg-ghost-active:darken( $btn-bg-ghost, 12%);
+
+$btn-close-color: #3e3e3e;
+$btn-close-hover: darken( $btn-close-color, 10% );
+$btn-close-active: darken( $btn-close-color, 30% );
+
+$btn-bg-disabled: #ddd;
+
+// to make color lighter
+//lighten( $base-color, 10% );
+
+
+// modals
+$overlay-color: rgba(0, 0, 0, .5);
+
+
+// fonts
+$font: "Roboto", "Helvetica", "Arial", sans-serif;
+$text-color: #051622;
+
+
+// breakpoints
+$medium: 1024px;
+$small: 768px;

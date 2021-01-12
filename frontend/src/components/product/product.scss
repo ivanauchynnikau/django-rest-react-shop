@@ -1,0 +1,133 @@
+.product {
+  padding: 20px;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  transition: all .2s ease-out;
+  background: #fff;
+
+  &__link {
+    text-decoration: none;
+    color: $text-color;
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &:focus,
+  &:hover {
+    box-shadow: $box-shadow-hover;
+  }
+
+  &._product-page {
+    display: flex;
+    box-shadow: none;
+    cursor: default;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    .product {
+      &:focus,
+      &:hover {
+        box-shadow: none;
+      }
+
+      &__title {
+        text-align: left;
+        padding-left: 40%;
+
+        @media (max-width: $small) {
+          text-align: center;
+          padding-left: 0;
+        }
+      }
+
+      &__link {
+        width: 100%;
+      }
+
+      &__top {
+        width: 35%;
+        position: relative;
+        top: -45px;
+
+        @media (max-width: $small) {
+          width: 100%;
+          position: static;
+        }
+      }
+
+      &__bottom {
+        width: 60%;
+        padding-left: 5%;
+
+        @media (max-width: $small) {
+          width: 100%;
+          padding-left: 0;
+        }
+      }
+
+      &__container {
+        display: flex;
+
+        @media (max-width: $small) {
+          display: block;
+        }
+      }
+
+      &__img {
+        height: 300px;
+      }
+
+      &__button {
+        max-width: 220px;
+      }
+    }
+  }
+
+  &__img {
+    object-fit: contain;
+    height: 260px;
+    margin: 0 auto 10px auto;
+    width: 100%;
+  }
+
+  &__title {
+    height: 34px;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 10px;
+    @include text-ellipsis;
+  }
+
+  &__description {
+    height: 65px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    max-height: 100px;
+    overflow: hidden;
+  }
+
+  &__price {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  &__in-stock {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
