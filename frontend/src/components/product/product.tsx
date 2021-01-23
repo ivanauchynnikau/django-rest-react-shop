@@ -31,7 +31,7 @@ export interface IProductProps {
   customClass: string,
   orderViewMode: boolean,
   localCartProvider: {
-    addProductToCart: (arg: CartItemShape) => void
+    addProductToCart: (arg: ICartItem) => void
   },
 }
 
@@ -50,7 +50,7 @@ class Product extends Component<IProductProps> {
     super(props);
   }
 
-  addToCart = (event: SyntheticEvent, product: ProductShape) => {
+  addToCart = (event: SyntheticEvent, product: IProduct) => {
     if (this.props.orderViewMode) return;
 
     event.preventDefault();
