@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 
-# os.getenv('SOME_VALUE) 123  get value from env file
-
 import os
 from dotenv import load_dotenv
 import time
@@ -189,3 +187,4 @@ AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 AWS_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 DEFAULT_FILE_STORAGE = 'djangoRestReactShop.storage_backends.MediaStorage'
+
