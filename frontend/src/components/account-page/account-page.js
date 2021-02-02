@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import UserProvider from "../../providers/user";
+import {NotificationManager} from 'react-notifications';
 import {push} from "react-router-redux";
+
+import UserProvider from "../../providers/user";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 import {
   getError,
   handleValueChange
 } from "../../utils/js/utils";
-import {NotificationManager} from 'react-notifications';
 
 
 class AccountPage extends Component {

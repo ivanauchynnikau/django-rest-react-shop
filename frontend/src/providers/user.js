@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import DataProvider from '../utils/js/data-provider';
 import {CLEAR_USER, SET_USER} from "../actions/user";
 import {START_LOADING, END_LOADING} from "../actions/loading";

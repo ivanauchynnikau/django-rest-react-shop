@@ -3,7 +3,6 @@ import {
   END_LOADING,
 } from "../actions/loading";
 
-import React from "react";
 
 const initialState = {
   isLoading: false,

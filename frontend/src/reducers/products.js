@@ -2,7 +2,6 @@ import {
   GET_PRODUCT_LIST,
 } from "../actions/products";
 
-import React from "react";
 
 const initialState = {
   productList: [],

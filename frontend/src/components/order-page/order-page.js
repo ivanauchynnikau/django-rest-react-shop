@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import OrderProvider from "../../providers/orders";
+import uuid from "react-uuid";
 import {push} from "react-router-redux";
+
+import OrderProvider from "../../providers/orders";
 import {getOrderStateName} from "../../utils/js/utils";
 import Product from "../product/product";
-import uuid from "react-uuid";
 
 
 class OrderPage extends Component {

@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import OrderProvider from "../../providers/orders";
 import {push} from "react-router-redux";
+import {Link} from "react-router-dom";
 import uuid from "react-uuid";
+
+import OrderProvider from "../../providers/orders";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
 import {getOrderStateName} from "../../utils/js/utils";
 import Product from "../product/product";
-import {Link} from "react-router-dom";
 
 
 class OrdersListPage extends Component {

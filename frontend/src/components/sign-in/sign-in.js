@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import SimpleReactValidator from 'simple-react-validator';
-import {handleValueChange} from "../../utils/js/utils";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {connect} from "react-redux";
-import UserProvider from "../../providers/user";
-import {getError} from "../../utils/js/utils";
 import {NotificationManager} from "react-notifications";
+
+import UserProvider from "../../providers/user";
+import {
+  handleValueChange,
+  getError
+} from "../../utils/js/utils";
 
 
 class SignIn extends Component {

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import ProductProvider from "./../../providers/products";
-import Product from "./../../components/product/product";
 import uuid from 'react-uuid'
 import Select from 'react-select';
+
+import Product from "./../../components/product/product";
+import ProductProvider from "./../../providers/products";
 
 
 class ProductListPage extends Component {

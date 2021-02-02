@@ -1,6 +1,7 @@
 import DataProvider from '../utils/js/data-provider';
 import axios from 'axios';
 import {NotificationManager} from 'react-notifications';
+
 import {GET_PRODUCT_LIST} from '../actions/products';
 import {END_LOADING, START_LOADING} from "../actions/loading";
 

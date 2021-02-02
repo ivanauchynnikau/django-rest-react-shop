@@ -3,7 +3,6 @@ import {
   CLEAR_USER
 } from "../actions/user";
 
-import React from "react";
 
 const initialState = {
   id: '',

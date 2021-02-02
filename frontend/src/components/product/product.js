@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
-import LocalCart from "../../providers/local-cart";
 import {Link} from "react-router-dom";
+
+import LocalCart from "../../providers/local-cart";
 import {CURRENCY} from "../../utils/js/config";
 
 

@@ -2,7 +2,6 @@ import {
   UPDATE_CART,
 } from "../actions/local-cart";
 
-import React from "react";
 
 const initialState = {
   orderList: [],

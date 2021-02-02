@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {push} from "react-router-redux";
+
 import SignIn from './../sign-in/sign-in';
 import Modal from './../modal/modal';
 import TopBarCart from './../top-bar-cart/top-bar-cart';
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
 import LocalCart from "../../providers/local-cart";
 import UserProvider from "../../providers/user";
-import {push} from "react-router-redux";
 
 
 export class TopBar extends Component {

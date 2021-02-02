@@ -5,11 +5,10 @@ import {Provider} from 'react-redux'
 import {Route, Switch} from 'react-router' // react-router v4/v5
 import {NotificationContainer} from 'react-notifications';
 import {ConnectedRouter} from 'connected-react-router'
-import configureStore, {history} from './configureStore'
 
+import configureStore, {history} from './configureStore'
 const store = configureStore(/* provide initial state if any */);
 
-// Project
 import ProductPage from './components/product-page/product-page'
 import InitializingContainer from './components/initializing-container/initializing-container'
 import TopBar from "./components/top-bar/top-bar";
@@ -19,6 +18,7 @@ import CartPage from "./components/cart-page/cart-page";
 import OrderPage from "./components/order-page/order-page";
 import AccountPage from "./components/account-page/account-page";
 import OrdersListPage from "./components/orders-list-page/orders-list-page";
+
 
 ReactDOM.render(
   <div className="app-wrapper">

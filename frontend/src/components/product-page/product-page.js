@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import uuid from "react-uuid";
+
 import Product from "../product/product";
 import ProductProvider from "../../providers/products";
 

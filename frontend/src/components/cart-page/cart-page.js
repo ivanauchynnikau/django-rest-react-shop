@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import uuid from 'react-uuid'
-import LocalCart from "../../providers/local-cart";
-import OrderProvider from "../../providers/orders";
-import {CURRENCY} from '../../utils/js/config'
 import {Link} from "react-router-dom";
 import {confirmAlert} from 'react-confirm-alert';
 import {NotificationManager} from 'react-notifications';
+
+import LocalCart from "../../providers/local-cart";
+import OrderProvider from "../../providers/orders";
+import {CURRENCY} from '../../utils/js/config'
 
 
 class CartPage extends Component {
