@@ -27,11 +27,7 @@ class AccountPage extends Component {
   };
 
   static getDerivedStateFromProps(props) {
-    return {
-      email: props.user.email,
-      lastName: props.user.lastName,
-      firstName: props.user.firstName
-    };
+    return { ...props.user };
   }
 
   componentDidMount() {

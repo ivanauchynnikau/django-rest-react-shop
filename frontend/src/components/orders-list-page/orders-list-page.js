@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {push} from "react-router-redux";
 import {Link} from "react-router-dom";
 import uuid from "react-uuid";
+import {NotificationManager} from "react-notifications";
 
 import OrderProvider from "../../providers/orders";
 import {LOCAL_STORAGE_KEYS} from "../../utils/js/config";
@@ -31,6 +32,7 @@ class OrdersListPage extends Component {
         this.setState({orderList: response.data});
       })
       .catch(() => {
+        NotificationManager.warning('Something went wrong! please contact us!');
         this.props.redirectToHomePage();
       });
   }

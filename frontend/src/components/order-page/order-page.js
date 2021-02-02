@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import uuid from "react-uuid";
 import {push} from "react-router-redux";
+import {NotificationManager} from "react-notifications";
 
 import OrderProvider from "../../providers/orders";
 import {getOrderStateName} from "../../utils/js/utils";
@@ -29,13 +30,13 @@ class OrderPage extends Component {
         this.setState({order});
       })
       .catch((error) => {
+        NotificationManager.warning('Something went wrong! please contact us!');
         this.props.redirectToHomePage();
       });
   }
 
   totalPriceRenderer = () => {
-    const totalPrice = this.state.order.items.reduce((sum, item) => sum + (parseFloat(item.item.price)), 0).toFixed(2);
-    return totalPrice
+    return this.state.order.items.reduce((sum, item) => sum + (parseFloat(item.item.price)), 0).toFixed(2);
   }
 
   render() {
