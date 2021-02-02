@@ -1,4 +1,22 @@
-[DjangoRestReactShop](https://django-rest-react-shop.herokuapp.com/)
+[django-rest-react-shop.herokuapp.com](https://django-rest-react-shop.herokuapp.com/)
+
+### Overview
+Educational project, simple online store.
+The project use Python, Django, Django REST Framework, Hermione.
+
+
+### TODO
+1. Add login via social networks (google, facebook)
+2. Add to cart the ability to change the quantity of goods
+3. Add TypeScript
+4. Add pagination to the main page
+5. Add slider for product page
+6. Add search by products in header + dropdown with results
+7. Add category menu to UI
+8. Add filters to the catalog: by price, by category ...
+9. Add logic for password recovery / reset
+10. Add a blog, page of all articles, page of a separate article
+
 
 ### Requirements
 * Ubuntu 18.04
