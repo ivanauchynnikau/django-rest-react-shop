@@ -23,7 +23,7 @@ class OrderCreateView(viewsets.ViewSet):
         product_id_list = request.data['data']['productIdsArray']
         user_email = request.data['data']['email']
 
-        user = MyUser.objects.filter(email__exact=user_email).first()
+        user = MyUser.objects.filter(email__iexact=user_email).first()
         order = Order.objects.create(state=OrderStatuses.STARTED, user=user)
         order.save()
 

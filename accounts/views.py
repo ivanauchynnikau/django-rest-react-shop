@@ -59,7 +59,7 @@ class LoginAPIView(APIView):
         email = serializer.validated_data['email']
         token = serializer.validated_data['auth_token'].key
 
-        user = MyUser.objects.filter(email__exact=email).first()
+        user = MyUser.objects.filter(email__iexact=email).first()
 
         return Response({
             'email': email,
