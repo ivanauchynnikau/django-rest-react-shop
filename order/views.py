@@ -9,7 +9,7 @@ from .serializers import OrderDetailSerializer
 from .models import MyUser
 from .permissions import IsOwner
 from .emailer import send_email
-from .choices import ORDER_STATUSES
+from .choices import OrderStatuses
 
 from orderItem.models import OrderItem
 
@@ -24,7 +24,7 @@ class OrderCreateView(viewsets.ViewSet):
         user_email = request.data['data']['email']
 
         user = MyUser.objects.filter(email__exact=user_email).first()
-        order = Order.objects.create(state=ORDER_STATUSES.STARTED, user=user)
+        order = Order.objects.create(state=OrderStatuses.STARTED, user=user)
         order.save()
 
         for product_id in product_id_list:

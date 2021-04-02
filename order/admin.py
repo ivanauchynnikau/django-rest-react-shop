@@ -1,4 +1,3 @@
-# Register your models here.
 from django.contrib import admin
 from order.models import Order
 from orderItem.models import OrderItem
