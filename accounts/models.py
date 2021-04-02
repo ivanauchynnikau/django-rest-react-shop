@@ -38,7 +38,7 @@ class MyUser(AbstractBaseUser):
     email = models.EmailField(verbose_name='Email address', max_length=255, unique=True)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
-    date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
+    date_joined = models.DateTimeField(verbose_name='Date joined', auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
@@ -49,8 +49,8 @@ class MyUser(AbstractBaseUser):
     USERNAME_FIELD = 'email'
 
     class Meta:
-        verbose_name = 'user',
-        verbose_name_plural = 'users'
+        verbose_name = 'User',
+        verbose_name_plural = 'Users'
 
     def __str__(self):
         return self.email
