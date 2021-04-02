@@ -6,10 +6,10 @@ def get_product_list_html(product_list):
     message = ''
     for product in product_list:
         message += (
-            f'<p style="font-size: 22px;">{ product["title"] }</p>'
-            f'<div><img style="max-width: 320px;" src="https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{ product["image"] }"></div>'
-            f'<p>Description: { product["description"] }</p>'
-            f'<p style="font-size: 18px;">Price: { product["price"] }</p>'
+            f'<p style="font-size: 22px;">{product["title"]}</p>'
+            f'<img style="max-width: 320px;" src="https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{product["image"]}">'
+            f'<p>Description: {product["description"]}</p>'
+            f'<p style="font-size: 18px;">Price: {product["price"]}</p>'
             f'<br><hr><br>'
         )
 
