@@ -27,7 +27,7 @@ class RegistrationAPIView(APIView):
         email = serializer.validated_data['email']
         password = serializer.validated_data['password']
 
-        existing_user = MyUser.objects.filter(email__exact=email).first()
+        existing_user = MyUser.objects.filter(email__iexact=email).first()
         if existing_user:
             return Response({'error': 'User with this email is already registered'}, status=status.HTTP_400_BAD_REQUEST)
 
