@@ -1,0 +1,20 @@
+.product-list-page {
+  margin-bottom: 40px;
+
+  &__top {
+    padding: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+
+    &-sorting {
+      width: 180px;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
+  }
+}

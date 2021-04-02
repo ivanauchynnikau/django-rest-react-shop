@@ -1,0 +1,29 @@
+.top-bar-cart {
+  position: relative;
+  transition: opacity .2s ease-out;
+
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: .8;
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  &__quantity {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $danger-color;
+    position: absolute;
+    font-size: 12px;
+    line-height: 23px;
+    right: 0;
+    top: 0;
+    color: #fff;
+    text-align: center;
+  }
+}
