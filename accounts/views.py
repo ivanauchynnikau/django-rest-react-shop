@@ -83,20 +83,14 @@ class UserDetailsAPIView(APIView):
         if not request.auth.key:
             return Response({'error': 'Auth token is required'}, status=status.HTTP_400_BAD_REQUEST)
 
-        try:
-            user = Token.objects.get(key=request.auth.key).user
-        except Token.DoesNotExist:
-            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
+        user = request.user
 
-        if user is not None:
-            return Response(status=200, data={
-                "id": user.id,
-                "email": user.email,
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-            })
-        else:
-            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=200, data={
+            "id": user.id,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+        })
 
     def post(self, request):
         """
@@ -127,16 +121,13 @@ class UserDetailsAPIView(APIView):
         except Token.DoesNotExist:
             return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
 
-        if user is not None:
-            user.first_name = first_name
-            user.last_name = last_name
-            user.save()
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
 
-            return Response(status=200, data={
-                "email": user.email,
-                "id": user.id,
-                'first_name': user.first_name,
-                'last_name': user.last_name
-            })
-        else:
-            return Response({'error': 'User does not exists'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=200, data={
+            "email": user.email,
+            "id": user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        })
